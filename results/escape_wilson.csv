@@ -1,0 +1,6 @@
+label,duration_s,asset_bytes,incremental_ebd,incremental_fired,B_min,R_min,A_min,incremental_session_fpb,floor_Ta5,record_ebd_Ta5,floor_Ta15,record_ebd_Ta15,floor_Ta60,record_ebd_Ta60,record_threshold_Ta5,record_fpb_Ta5,record_fpb_lo_Ta5,record_fpb_hi_Ta5,record_threshold_Ta15,record_fpb_Ta15,record_fpb_lo_Ta15,record_fpb_hi_Ta15,record_threshold_Ta60,record_fpb_Ta60,record_fpb_lo_Ta60,record_fpb_hi_Ta60,rule
+attack_d2_k1_a2M,2.3,2097152,1.0,True,32000,60000.0,2.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0,0.65,0.0,0.0,0.009536,0.65,0.0,0.0,0.009536,0.45,0.017632,0.008567,0.035943,wilson
+attack_d8_k1_a2M,8.3,2097152,0.254957,True,32000,60000.0,2.0,0.0,0.624895,1.0,1.0,1.0,1.0,1.0,0.65,0.0,0.0,0.009536,0.65,0.0,0.0,0.009536,0.45,0.017632,0.008567,0.035943,wilson
+attack_d32_k1_a2M,32.3,2097152,0.063353,True,32000,60000.0,2.0,0.0,0.156641,1.0,0.469227,1.0,1.0,1.0,0.65,0.0,0.0,0.009536,0.65,0.0,0.0,0.009536,0.45,0.017632,0.008567,0.035943,wilson
+attack_d128_k1_a2M,128.3,2097152,1.0,False,32000,60000.0,2.0,0.0,0.039682,1.0,0.117655,1.0,0.469227,1.0,0.65,0.0,0.0,0.009536,0.65,0.0,0.0,0.009536,0.45,0.017632,0.008567,0.035943,wilson
+attack_d256_k1_a2M,256.3,2097152,1.0,False,32000,60000.0,2.0,0.0,0.020189,1.0,0.059175,1.0,0.234613,1.0,0.65,0.0,0.0,0.009536,0.65,0.0,0.0,0.009536,0.45,0.017632,0.008567,0.035943,wilson

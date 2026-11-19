@@ -1,0 +1,56 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.venv-nfstream/
+
+# Test / tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.DS_Store
+
+# Experiment outputs. The CSV/JSON/TXT results the paper quotes are TRACKED
+# (tests/test_paper_numbers.py reads them); run logs and scratch are not.
+# Figures are regenerated; the copies the paper uses live in paper/figs/.
+results/*.log
+results/logs/
+results/*SHIMTEST*
+figures/
+*.pcap
+# The controlled captures of the paper are released with the code.
+!data/testbed/capture.pcap
+!data/testbed_escape/capture.pcap
+!data/testbed_netem/*.pcap
+*.pcapng
+# uv.lock is intentionally tracked for reproducibility.
+
+# Deck build byproducts
+briefings/ql/
+briefings/*.pdf
+briefings/node_modules/
+briefings/package*.json
+
+# LaTeX build byproducts
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*.spl
+paper/build.log
+paper/ql/
+
+# Snapshot archives and transfer copies (kept on disk, not in git)
+*.tar.gz
+_to_delete/
+data/realdata/*.csv.gz
+!data/realdata/train_flows.csv.gz

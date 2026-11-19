@@ -1,0 +1,42 @@
+filebeat.inputs:
+  - type: netflow
+    id: nf-e1
+    host: "127.0.0.1:2055"
+    protocols: [v5, v9, ipfix]
+    tags: ["e1-softflowd-default"]
+    fields: {exporter_profile: e1}
+    fields_under_root: true
+  - type: netflow
+    id: nf-e2
+    host: "127.0.0.1:2056"
+    protocols: [v5, v9, ipfix]
+    tags: ["e2-softflowd-cisco-like"]
+    fields: {exporter_profile: e2}
+    fields_under_root: true
+  - type: filestream
+    id: zeek-conn
+    paths: ["/opt/lab/zeek/conn.log"]
+    prospector.scanner.check_interval: 1s
+    parsers:
+      - ndjson:
+          target: "zeek"
+    fields: {exporter_profile: zeek}
+    fields_under_root: true
+output.elasticsearch:
+  hosts: ["http://127.0.0.1:9200"]
+  username: "elastic"
+  password: "<redacted>"
+  index: "lab-flows"
+  pipeline: "lab-ingest"
+  indices:
+    - index: "lab-zeek"
+      when.equals: {exporter_profile: zeek}
+  pipelines:
+    - pipeline: "lab-zeek"
+      when.equals: {exporter_profile: zeek}
+setup.template.name: "lab-flows"
+setup.template.pattern: "lab-*"
+setup.ilm.enabled: false
+setup.dashboards.enabled: false
+logging.level: info
+queue.mem.flush.timeout: 1s

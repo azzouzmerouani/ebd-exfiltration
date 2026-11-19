@@ -1,0 +1,220 @@
+{
+ "testbed": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed_netem",
+ "rule": "wilson",
+ "budget": 0.01,
+ "conditions": "tc netem delay 10ms per packet on lo (20 ms RTT), loss 0.5% per packet (configured), lo MTU 1500, TSO/GSO/GRO off, unprivileged user+network namespace (Linux 6.8 VM), AF_PACKET capture with kernel timestamps, snaplen 96, same plan and seed as data/testbed; transfers of 256 s excluded (they exceed one chunk)",
+ "excluded_labels": [
+  "attack_d256_k1_a20M",
+  "attack_d256_k1_a2M",
+  "attack_d256_k8_a2M"
+ ],
+ "reconciliation_worst": 0.0,
+ "per_timeout": {
+  "5": {
+   "threshold": 0.65,
+   "admissible": true,
+   "train_sessions": 600,
+   "train_fpb": 0.0,
+   "train_upper": 0.00636170101370071,
+   "heldout_sessions": 600,
+   "heldout_alerts": 0,
+   "heldout_fpb": 0.0,
+   "heldout_lo": 4.336808689942018e-19,
+   "heldout_hi": 0.00636170101370071,
+   "heldout_auc_session": 0.9691176470588235,
+   "heldout_auc_record": 0.9194977527288293
+  },
+  "15": {
+   "threshold": 0.65,
+   "admissible": true,
+   "train_sessions": 600,
+   "train_fpb": 0.0,
+   "train_upper": 0.00636170101370071,
+   "heldout_sessions": 600,
+   "heldout_alerts": 0,
+   "heldout_fpb": 0.0,
+   "heldout_lo": 4.336808689942018e-19,
+   "heldout_hi": 0.00636170101370071,
+   "heldout_auc_session": 0.9574509803921566,
+   "heldout_auc_record": 0.8791984732824427
+  },
+  "60": {
+   "threshold": 0.65,
+   "admissible": true,
+   "train_sessions": 598,
+   "train_fpb": 0.0,
+   "train_upper": 0.006382841800598862,
+   "heldout_sessions": 600,
+   "heldout_alerts": 0,
+   "heldout_fpb": 0.0,
+   "heldout_lo": 4.336808689942018e-19,
+   "heldout_hi": 0.00636170101370071,
+   "heldout_auc_session": 0.9715686274509804,
+   "heldout_auc_record": 0.8994447126991791
+  }
+ },
+ "timeline_bin_seconds": 0.01,
+ "unreconciled_excluded": [
+  {
+   "label": "attack_d4_k1_a20M",
+   "index": 424,
+   "reconstructed_bytes": 20576663,
+   "planned_bytes": 20971520,
+   "relative_error": 0.01882824897766113
+  }
+ ],
+ "export_sources": [
+  {
+   "pcap": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/capture.pcap",
+   "active_timeout": 5.0,
+   "idle_timeout": 5.0,
+   "source": "cache",
+   "cache": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/exports/nfstream_a5_i5.jsonl.gz",
+   "records": 1623,
+   "nfstream": "6.5.4",
+   "python": "3.8.20",
+   "platform": "macOS-26.3.1-x86_64-i386-64bit",
+   "created_utc": "2026-10-12T12:01:32Z",
+   "pcap_sha256": "47dfa6e7cdf6e7969444fa2349cce7ef23459a4617c0d55be52729343a85bdd6"
+  },
+  {
+   "pcap": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/capture.pcap",
+   "active_timeout": 15.0,
+   "idle_timeout": 15.0,
+   "source": "cache",
+   "cache": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/exports/nfstream_a15_i15.jsonl.gz",
+   "records": 1457,
+   "nfstream": "6.5.4",
+   "python": "3.8.20",
+   "platform": "macOS-26.3.1-x86_64-i386-64bit",
+   "created_utc": "2026-10-12T12:01:33Z",
+   "pcap_sha256": "47dfa6e7cdf6e7969444fa2349cce7ef23459a4617c0d55be52729343a85bdd6"
+  },
+  {
+   "pcap": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/capture.pcap",
+   "active_timeout": 60.0,
+   "idle_timeout": 60.0,
+   "source": "cache",
+   "cache": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/exports/nfstream_a60_i60.jsonl.gz",
+   "records": 1390,
+   "nfstream": "6.5.4",
+   "python": "3.8.20",
+   "platform": "macOS-26.3.1-x86_64-i386-64bit",
+   "created_utc": "2026-10-12T12:01:33Z",
+   "pcap_sha256": "47dfa6e7cdf6e7969444fa2349cce7ef23459a4617c0d55be52729343a85bdd6"
+  },
+  {
+   "pcap": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/capture.pcap",
+   "active_timeout": 5.0,
+   "idle_timeout": 5.0,
+   "source": "cache",
+   "cache": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/exports/nfstream_a5_i5.jsonl.gz",
+   "records": 1623,
+   "nfstream": "6.5.4",
+   "python": "3.8.20",
+   "platform": "macOS-26.3.1-x86_64-i386-64bit",
+   "created_utc": "2026-10-12T12:01:32Z",
+   "pcap_sha256": "47dfa6e7cdf6e7969444fa2349cce7ef23459a4617c0d55be52729343a85bdd6"
+  },
+  {
+   "pcap": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/capture.pcap",
+   "active_timeout": 15.0,
+   "idle_timeout": 15.0,
+   "source": "cache",
+   "cache": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/exports/nfstream_a15_i15.jsonl.gz",
+   "records": 1457,
+   "nfstream": "6.5.4",
+   "python": "3.8.20",
+   "platform": "macOS-26.3.1-x86_64-i386-64bit",
+   "created_utc": "2026-10-12T12:01:33Z",
+   "pcap_sha256": "47dfa6e7cdf6e7969444fa2349cce7ef23459a4617c0d55be52729343a85bdd6"
+  },
+  {
+   "pcap": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/capture.pcap",
+   "active_timeout": 60.0,
+   "idle_timeout": 60.0,
+   "source": "cache",
+   "cache": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/exports/nfstream_a60_i60.jsonl.gz",
+   "records": 1390,
+   "nfstream": "6.5.4",
+   "python": "3.8.20",
+   "platform": "macOS-26.3.1-x86_64-i386-64bit",
+   "created_utc": "2026-10-12T12:01:33Z",
+   "pcap_sha256": "47dfa6e7cdf6e7969444fa2349cce7ef23459a4617c0d55be52729343a85bdd6"
+  },
+  {
+   "pcap": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed_netem/capture.pcap",
+   "active_timeout": 5.0,
+   "idle_timeout": 5.0,
+   "source": "cache",
+   "cache": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed_netem/exports/nfstream_a5_i5.jsonl.gz",
+   "records": 1467,
+   "nfstream": "6.5.4",
+   "python": "3.8.20",
+   "platform": "macOS-26.3.1-x86_64-i386-64bit",
+   "created_utc": "2026-10-12T12:01:37Z",
+   "pcap_sha256": "0509fcd13aa9685344d6f57e87a0eaaa5adec85c3e582b70d3e56a953f0f940b"
+  },
+  {
+   "pcap": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed_netem/capture.pcap",
+   "active_timeout": 15.0,
+   "idle_timeout": 15.0,
+   "source": "cache",
+   "cache": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed_netem/exports/nfstream_a15_i15.jsonl.gz",
+   "records": 1405,
+   "nfstream": "6.5.4",
+   "python": "3.8.20",
+   "platform": "macOS-26.3.1-x86_64-i386-64bit",
+   "created_utc": "2026-10-12T12:01:39Z",
+   "pcap_sha256": "0509fcd13aa9685344d6f57e87a0eaaa5adec85c3e582b70d3e56a953f0f940b"
+  },
+  {
+   "pcap": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed_netem/capture.pcap",
+   "active_timeout": 60.0,
+   "idle_timeout": 60.0,
+   "source": "cache",
+   "cache": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed_netem/exports/nfstream_a60_i60.jsonl.gz",
+   "records": 1380,
+   "nfstream": "6.5.4",
+   "python": "3.8.20",
+   "platform": "macOS-26.3.1-x86_64-i386-64bit",
+   "created_utc": "2026-10-12T12:01:41Z",
+   "pcap_sha256": "0509fcd13aa9685344d6f57e87a0eaaa5adec85c3e582b70d3e56a953f0f940b"
+  }
+ ],
+ "asset_invariance": {
+  "pairs": [
+   {
+    "active_timeout_s": 5.0,
+    "planned_duration_s": 32.0,
+    "floor_20M": 0.156248,
+    "floor_2M": 0.156641,
+    "abs_diff_pp": 0.039300000000000446
+   },
+   {
+    "active_timeout_s": 15.0,
+    "planned_duration_s": 32.0,
+    "floor_20M": 0.468743,
+    "floor_2M": 0.469227,
+    "abs_diff_pp": 0.048399999999998444
+   },
+   {
+    "active_timeout_s": 60.0,
+    "planned_duration_s": 32.0,
+    "floor_20M": 1.0,
+    "floor_2M": 1.0,
+    "abs_diff_pp": 0.0
+   }
+  ],
+  "n_pairs": 3,
+  "max_abs_diff_pp": 0.048399999999998444,
+  "exact_agreement": 1
+ },
+ "single_connection_cells": 27,
+ "closed_form_check": {
+  "n": 27,
+  "violations": 0,
+  "mean_excess_pp": 0.26057870138859135,
+  "max_excess_pp": 2.2557932176846207
+ }
+}

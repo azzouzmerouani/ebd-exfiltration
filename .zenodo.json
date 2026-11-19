@@ -1,0 +1,8 @@
+{
+  "title": "Exfiltrated Bytes before Detection: code, ground truth and survey codings",
+  "upload_type": "software",
+  "description": "Code, reconstructed byte-level ground truth for seven DAPT2021 exfiltration episodes, controlled captures and manifests, outputs of the DNS measurements, and both codings of the survey sample, accompanying the article 'Exfiltrated Bytes before Detection'. Raw DAPT2021 and DNS captures are public and are not redistributed.",
+  "creators": [{"name": "Azzouz, Merouani", "affiliation": "University of Ferhat Abbas Setif 1"}],
+  "license": "MIT",
+  "keywords": ["data exfiltration", "intrusion detection", "evaluation methodology", "flow records"]
+}

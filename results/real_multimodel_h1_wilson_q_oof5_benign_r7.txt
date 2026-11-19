@@ -1,0 +1,8 @@
+detector            F1-rank   EBD-rank
+-------------------------------------
+EDXGB (reproduced)       3         3
+Logistic Regression       4         4
+Random Forest            2         2
+XGBoost (default)        1         1
+-------------------------------------
+Kendall tau = +1.000  p = 0.083  -> tau at or above 0.5: agree by the H1 criterion

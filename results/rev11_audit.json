@@ -1,0 +1,197 @@
+{
+ "benign_flows_to_exfil_peers": {
+  "10.1.5.21:3306": 0,
+  "10.8.10.84:443": 0
+ },
+ "benign_flows_dst_port_3306": 0,
+ "benign_flows_dst_ip_peers": {
+  "10.1.5.21": 48,
+  "10.8.10.84": 927
+ },
+ "first_record": {
+  "443 #2": {
+   "src2dst_bytes": 3149,
+   "dst2src_bytes": 4999,
+   "packets": 43,
+   "duration_s": 60.762,
+   "fin": 2,
+   "payload_delivered_by_first_record": 6378,
+   "activity": "Exfiltration over C2 channel"
+  },
+  "443 #3": {
+   "src2dst_bytes": 33828,
+   "dst2src_bytes": 10124479,
+   "packets": 2580,
+   "duration_s": 25.3,
+   "fin": 2,
+   "payload_delivered_by_first_record": 9431,
+   "activity": "Data Transfer Size Limits"
+  },
+  "443 #4": {
+   "src2dst_bytes": 350,
+   "dst2src_bytes": 372,
+   "packets": 12,
+   "duration_s": 29.952,
+   "fin": 2,
+   "payload_delivered_by_first_record": 943,
+   "activity": "Data Transfer Size Limits"
+  },
+  "443 #5": {
+   "src2dst_bytes": 294,
+   "dst2src_bytes": 550,
+   "packets": 10,
+   "duration_s": 0.091,
+   "fin": 2,
+   "payload_delivered_by_first_record": 943,
+   "activity": "Data Transfer Size Limits"
+  },
+  "3306 #2": {
+   "src2dst_bytes": 1788,
+   "dst2src_bytes": 0,
+   "packets": 21,
+   "duration_s": 58.108,
+   "fin": 0,
+   "payload_delivered_by_first_record": 2392,
+   "activity": "Data Transfer Size Limits"
+  },
+  "3306 #1": {
+   "src2dst_bytes": 142,
+   "dst2src_bytes": 0,
+   "packets": 2,
+   "duration_s": 0.046,
+   "fin": 0,
+   "payload_delivered_by_first_record": 4488,
+   "activity": "Data Transfer Size Limits"
+  },
+  "443 #1": {
+   "src2dst_bytes": 1721,
+   "dst2src_bytes": 2220,
+   "packets": 30,
+   "duration_s": 60.073,
+   "fin": 2,
+   "payload_delivered_by_first_record": 6720,
+   "activity": "Unsecured Credentials"
+  }
+ },
+ "other_stage_attack_rows_trained_as_negative": 25994,
+ "other_stage_by_stage": {
+  "Lateral Movement": 6296,
+  "Establish Foothold": 19340,
+  "Cover up": 358
+ },
+ "feature_identical_negatives_per_episode": {
+  "443 #2": 5997,
+  "443 #3": 1383,
+  "443 #4": 1054,
+  "443 #5": 1157,
+  "443 #1": 111
+ },
+ "feature_identical_negatives_total": 7429,
+ "feature_identical_negatives_by_source": {
+  "10.1.3.8|net1013x_Flow_labeled.csv|Establish Foothold": 4143,
+  "192.168.0.11|netgw_Flow_labeled.csv|Lateral Movement": 3129,
+  "10.1.3.17|net1013x_Flow_labeled.csv|Cover up": 148,
+  "10.1.3.8|netgw_Flow_labeled.csv|Establish Foothold": 9
+ },
+ "scored_flows_per_episode": {
+  "443 #2": 446,
+  "443 #3": 1293,
+  "443 #4": 1331,
+  "443 #5": 2243,
+  "3306 #2": 204,
+  "3306 #1": 96,
+  "443 #1": 75
+ },
+ "at_floor_strict": {
+  "0pp": 3,
+  "0.3pp": 4,
+  "1pp": 5,
+  "ratio<=2": 3,
+  "ratios": {
+   "443 #1": 4.56,
+   "3306 #1": 1.0,
+   "3306 #2": 1.0,
+   "443 #2": 66.57,
+   "443 #3": 1.0,
+   "443 #4": 5.0,
+   "443 #5": 546.57
+  }
+ },
+ "at_floor_loo": {
+  "0pp": 4,
+  "0.3pp": 5,
+  "1pp": 5,
+  "ratio<=2": 4,
+  "ratios": {
+   "443 #1": 1.0,
+   "3306 #1": 1.0,
+   "3306 #2": 1.0,
+   "443 #2": 66.57,
+   "443 #3": 109.89,
+   "443 #4": 1.0,
+   "443 #5": 2.0
+  }
+ },
+ "at_floor_under_latency": {
+  "strict@0.0": 5,
+  "strict@15.0": 4,
+  "strict@120.0": 4,
+  "strict@300.0": 5,
+  "loo@0.0": 5,
+  "loo@15.0": 6,
+  "loo@120.0": 6,
+  "loo@300.0": 6
+ },
+ "benign_record_inflation": {
+  "15": 4.043,
+  "60": 1.654,
+  "120": 1.263,
+  "300": 1.066,
+  "600": 1.021,
+  "1800": 1.0
+ },
+ "cadence_by_stratum": {
+  "exfiltration/other": {
+   "both_rc": 6,
+   "second_cadence_yes": 3,
+   "second_cadence_no": 2,
+   "second_cadence_partial": 1
+  },
+  "general_nids/other": {
+   "both_rc": 17,
+   "second_cadence_yes": 5,
+   "second_cadence_no": 11,
+   "second_cadence_partial": 1
+  },
+  "exfiltration/dns": {
+   "both_rc": 1,
+   "second_cadence_yes": 1
+  }
+ },
+ "response_median_max": {
+  "0": {
+   "floor_median": 0.0042,
+   "floor_max": 0.0199,
+   "det_median": 0.0127,
+   "det_max": 1.0
+  },
+  "300": {
+   "floor_median": 0.0262,
+   "floor_max": 0.5065,
+   "det_median": 0.2436,
+   "det_max": 1.0
+  },
+  "3600": {
+   "floor_median": 0.2966,
+   "floor_max": 1.0,
+   "det_median": 0.2982,
+   "det_max": 1.0
+  },
+  "14400": {
+   "floor_median": 0.56,
+   "floor_max": 1.0,
+   "det_median": 1.0,
+   "det_max": 1.0
+  }
+ }
+}

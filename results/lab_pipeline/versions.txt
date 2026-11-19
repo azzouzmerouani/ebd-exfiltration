@@ -1,0 +1,6 @@
+softflowd 1.1.0 (Ubuntu 24.04 package)
+nfcapd: Version: 1.7.3-release Options: NSEL-NEL Date: Mon Apr 1 09:36:05 2024
+/opt/zeek/bin/zeek version 9.0.1
+elasticsearch 8.15.3, kibana 8.15.3, filebeat 8.15.3
+6.18.44-fc-v180
+Python 3.13.15

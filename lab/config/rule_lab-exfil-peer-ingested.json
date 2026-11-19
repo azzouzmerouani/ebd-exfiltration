@@ -1,0 +1,16 @@
+{
+  "name": "lab-exfil-peer-ingested",
+  "rule_id": "lab-exfil-peer-ingested",
+  "type": "query",
+  "language": "kuery",
+  "index": [
+    "lab-flows*",
+    "lab-zeek*"
+  ],
+  "query": "source.ip:10.10.1.2 and destination.ip:10.10.2.2 and destination.port >= 20000",
+  "interval": "5m",
+  "from": "now-360s",
+  "to": "now",
+  "max_signals": 1000,
+  "timestamp_override": "event.ingested"
+}

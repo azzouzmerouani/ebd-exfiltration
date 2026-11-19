@@ -1,0 +1,40 @@
+EBD-DNS RESULTS DIGEST  v4.2  2026-10-09 10:32:28  SMOKE=False FULL=False model=XGBoost
+corpus  malicious 18 captures (13 _down excluded); benign 124 (university 56/56); 20,256,785 packets
+parser  captures ended early 0; packets skipped after an error 0; DNS-over-TCP length-prefix-alone reads 330
+benign messages excluded as malformed: top_1_million_domains 0.0% of port-53 messages (0.0% of those sent to port 53); university_traffic 4.1% of port-53 messages (0.5% of those sent to port 53), most common: reserved label bits (0x40/0x80);  each benign capture read to its first 300,000 packets
+episodes  18 across 8 families at gap 300s; by gap 60s:22, 300s:18, 600s:18
+floor, episode level (treats episodes as independent; see the family level below)  consumer  n  mean [boot 95%]  median  total-loss k/n [Wilson]
+  per-query   18  0.002% [0.001, 0.003]  0.002%  0/18 [0.0, 17.6]
+  flow        18  52.416% [30.418, 74.228]  61.276%  9/18 [29.0, 71.0]
+  session     18  100.000% [100.000, 100.000]  100.000%  18/18 [82.4, 100.0]
+floor, FAMILY level (quote these: 8 families)  consumer  family-weighted mean  [Student-t 95% over the families]  [two-stage bootstrap, about 90% at 8 families]  families with total loss k/m [Wilson] [exact]
+  per-query  0.002%  t [0.001, 0.003]  boot [0.001, 0.003]  0/8 [0.0, 32.4] [0.0, 36.9]
+  flow       40.112%  t [0.000, 81.841]  boot [12.809, 75.228]  3/8 [13.7, 69.4] [8.5, 75.5]
+  session    100.000%  t [100.000, 100.000]  boot [100.000, 100.000]  8/8 [67.6, 100.0] [63.1, 100.0]
+closed form: mean excess -0.13pp, below 6/18 (lowest -1.72pp) | A5 unit: median |d| 0.000pp, max 0.085pp
+flow floor by ACTIVE timeout (mean %, total loss k/n)  30s:12.87% 0/18  60s:24.95% 1/18  120s:42.20% 2/18  300s:50.78% 9/18  600s:51.11% 9/18  1800s:52.42% 9/18
+floor by family (pq/flow/session %)  cobaltstrike(n=3):0.00/2.03/100.00  dns2tcp(n=2):0.00/100.00/100.00  dnscat2(n=4):0.00/100.00/100.00  dnsexfiltrator(n=2):0.00/1.03/100.00  dnspot(n=1):0.00/0.01/100.00  iodine(n=3):0.00/100.00/100.00  ozymandns(n=1):0.00/0.33/100.00  tcp_over_dns(n=2):0.00/17.50/100.00
+attainment (leave-one-family-out, exact Wilson-upper operating point)
+  per-query  within 0.01pp of the floor 17/18 [74.2, 99.0]  never alerted 0  gap max 1.281pp  AUC 0.997  (strict at-floor 14/18)
+    family level: EBD 0.082%  t [0.000, 0.271]  boot [0.001, 0.322]   gap 0.080pp  t [0.000, 0.270]  boot [0.000, 0.320]   families with every episode within 0.01pp 7/8 [52.9, 97.8] [47.3, 99.7]
+    operating point: threshold 5.26e-05 .. 0.000144; threshold set by: budget 2, tie plateau 6 (of 8 folds); budget used by the training units: median 100% [93, 100]; training burden 0.959% (upper 0.989%)
+    held-out burden / alerts per hour: top_1_million_domains:0.011%/6.8ph  university_traffic:1.101%/9463.9ph
+  flow       within 0.01pp of the floor 17/18 [74.2, 99.0]  never alerted 0  gap max 0.225pp  AUC 0.999  (strict at-floor 17/18)
+    family level: EBD 40.122%  t [0.000, 81.844]  boot [12.810, 75.256]   gap 0.009pp  t [0.000, 0.032]  boot [0.000, 0.038]   families with every episode within 0.01pp 7/8 [52.9, 97.8] [47.3, 99.7]
+    operating point: threshold 2.42e-05 .. 7.59e-05; threshold set by: tie plateau 8 (of 8 folds); budget used by the training units: median 100% [99, 100]; training burden 0.964% (upper 0.994%)
+    held-out burden / alerts per hour: top_1_million_domains:0.001%/0.7ph  university_traffic:1.063%/8329.7ph
+  session    within 0.01pp of the floor 18/18 [82.4, 100.0]  never alerted 0  gap max 0.000pp  AUC 1.000  (strict at-floor 18/18)
+    family level: EBD 100.000%  t [100.000, 100.000]  boot [100.000, 100.000]   gap 0.000pp  t [0.000, 0.000]  boot [0.000, 0.000]   families with every episode within 0.01pp 8/8 [67.6, 100.0] [63.1, 100.0]
+    operating point: threshold 3.92e-06 .. 8.85e-06; threshold set by: tie plateau 8 (of 8 folds); budget used by the training units: median 96% [91, 100]; training burden 0.931% (upper 0.961%)
+    held-out burden / alerts per hour: top_1_million_domains:0.110%/66.1ph  university_traffic:1.440%/2887.3ph
+  EBD by held-out family (pq/flow/session %)  cobaltstrike:0.002/2.103/100.000  dns2tcp:0.000/100.000/100.000  dnscat2:0.004/100.000/100.000  dnsexfiltrator:0.642/1.026/100.000  dnspot:0.002/0.008/100.000  iodine:0.003/100.000/100.000  ozymandns:0.000/0.333/100.000  tcp_over_dns:0.001/17.505/100.000
+  folds over budget on held-out benign (pooled point estimate): 0/24
+  folds with the Wilson LOWER bound over budget, top_1_million_domains (folds with held-out units only): per-query 0/8, flow 0/8, session 0/8
+  folds with the Wilson LOWER bound over budget, university_traffic (folds with held-out units only): per-query 8/8, flow 6/8, session 8/8
+ibHH-style W=60s thr=110 (max over sources; binding source: university_traffic; the v3 pooled rule would give 82): EBD mean 0.005%  stat-delay 0.003pp  never alerted 0
+  below the flow floor 17/18, of which 9 have a flow floor of 100% (trivially below); INFORMATIVE comparison (flow floor under 100%): 8/9 [56.5, 98.0]
+  ibHH held-out FPB, this rule: top_1_million_domains:0.002%  university_traffic:0.957%   pooled rule: top_1_million_domains:0.005%  university_traffic:1.520%   (a 60 s stream is not the learned detectors' unit: not a matched-burden comparison)
+invariants  I6 held on 54 pairs; I4 notes 6; I5 notes 0
+memory  limit 32.2 GB [cgroup v2 memory.max] (parsed corpus budget 9.7 GB); university captures read 56 of 56 discovered (planned 56); guard: none; one capture cost 0.025 GB; in use after each phase (GB): malicious parsed 0.51, benign parsed 2.48, floors computed 2.53, benign units built 3.25, before training 3.32, per-query: benign features 3.52, per-query: folds done 3.5, flow: benign features 3.67, flow: folds done 3.44, session: benign features 3.6, session: folds done 3.44
+memory limit, raw readings: cgroup_v2_memory.max=32212254720, cgroup_v1_limit_in_bytes=None, MemTotal_bytes=33658318848, kaggle_dir=True
+time  12.8 min in cells; slowest: LEAVE-ONE-FAMILY-OUT: TRAIN, OPERATI 7.5 min; PARSE CAPTURES 3.0 min; ibHH-STYLE STREAMING ACCUMULATOR (ou 0.8 min; CAUSAL FEATURES 0.8 min; peak memory 4.1 GB

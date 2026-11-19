@@ -1,0 +1,30 @@
+==========================================================================
+  EXPERIMENT D5 — byte-vs-time control (SYNTHETIC INSTRUMENT TEST)
+  Shows whether the harness detects a byte-vs-time effect when the
+  base scorer discriminates. Not evidence about real traffic.
+==========================================================================
+
+dataset: 144 attack + 220 benign  |  median asset 496 MB  |  36 cells
+split:   train 72A/110B   test 72A/110B
+
+variant under test: byte   (vs time-cost control)
+
+D5  byte-vs-time control   (base = classifier)
+============================================================
+FPB budget           : 5%   (achieved: byte 2.7%, time 0.0%)
+detection rate       : byte 62.5%   time 98.6%
+mean EBD (MB)        : byte  276.47   time  180.68
+
+per-rate mean EBD (MB)   [saving = time - byte, >0 favours byte]
+  rate         n      byte      time    saving    det%
+  burst       18    368.39    485.48   +117.09    100%
+  fast        21    304.44    142.76   -161.68    100%
+  throttled   15    320.82     53.91   -266.92     20%
+  drip        18    114.94     25.75    -89.19     17%
+
+paired nEBD saving   : -0.3390   95% CI [-0.4351, -0.2508]
+episodes byte<=time  : 28%
+pre-registered D5    : NOT supported  (byte does not beat time on this run)
+
+wrote results/d5_per_rate_byte.csv
+wrote figures/d5_per_rate_byte.png

@@ -1,0 +1,67 @@
+[project]
+name = "exfil-ebd"
+version = "0.1.0"
+description = "Early exfiltration detection benchmarked by Exfiltrated Bytes before Detection (EBD)"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "dpkt>=1.9.8",
+    "lightgbm>=4.7.0",
+    "matplotlib>=3.11.1",
+    "numpy>=2.5.1",
+    "pandas>=3.0.5",
+    "scikit-learn>=1.9.0",
+    "scipy>=1.18.0",
+    "xgboost>=3.0.0",
+]
+
+# nfstream pulls a compiled nDPI wheel and is only needed by the Sec. 9 drivers
+# (fast_regime, escape), which export the committed captures to flow records.
+# Every other driver runs without it. Held below 6.6: the 6.6.0 wheel for
+# macOS x86_64 / CPython 3.12 fails to import ("symbol not found in flat
+# namespace '_ndpi_risk_shortnames'", 10 Oct 2026); 6.5.4 is the floor the
+# project was developed against. The fast-point reproduction check of
+# ebd.experiments.revision_runs shows whether a version change moved anything.
+[project.optional-dependencies]
+testbed = ["nfstream>=6.5.4,<6.6"]
+
+[project.scripts]
+ebd-synth = "ebd.experiments.synthetic:main"
+ebd-d5 = "ebd.experiments.d5_control:main"
+ebd-stability = "ebd.experiments.stability:main"
+ebd-cadence = "ebd.experiments.cadence_floor:main"
+ebd-real = "ebd.experiments.real_floor:main"
+ebd-edxgb = "ebd.experiments.real_edxgb:main"
+ebd-multimodel = "ebd.experiments.real_multimodel:main"
+ebd-survey = "ebd.experiments.survey:main"
+ebd-sweep = "ebd.experiments.cadence_sweep:main"
+ebd-granularity = "ebd.experiments.granularity:main"
+ebd-capture = "ebd.testbed.run_capture:main"
+ebd-fast = "ebd.experiments.fast_regime:main"
+ebd-escape-capture = "ebd.testbed.run_escape_capture:main"
+ebd-escape = "ebd.experiments.escape:main"
+ebd-session = "ebd.experiments.session_detector:main"
+ebd-netem-capture = "ebd.testbed.netem_capture:main"
+ebd-revision = "ebd.experiments.revision_runs:main"
+ebd-survey-agreement = "ebd.experiments.survey_agreement:main"
+ebd-semantics = "ebd.experiments.emission_semantics:main"
+ebd-baseline = "ebd.experiments.real_baseline:main"
+ebd-timing-baseline = "ebd.experiments.real_timing_baseline:main"
+ebd-floor-all = "ebd.experiments.real_floor_all:main"
+ebd-response = "ebd.experiments.response_sensitivity:main"
+ebd-time-vs-bytes = "ebd.experiments.time_vs_bytes:main"
+
+[build-system]
+requires = ["uv_build>=0.11.23,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "ebd"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

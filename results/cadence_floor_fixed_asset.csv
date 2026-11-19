@@ -1,0 +1,17 @@
+cadence,cadence_s,rate,duration_s,mean_nebd_floor,frac_total_loss
+cicflowmeter-120s,120.0,burst,17.0,1.0,1.0
+cicflowmeter-120s,120.0,fast,50.0,1.0,1.0
+cicflowmeter-120s,120.0,throttled,167.0,0.7199,0.0
+cicflowmeter-120s,120.0,drip,500.0,0.2417,0.0
+netflow-60s,60.0,burst,17.0,1.0,1.0
+netflow-60s,60.0,fast,50.0,1.0,1.0
+netflow-60s,60.0,throttled,167.0,0.3615,0.0
+netflow-60s,60.0,drip,500.0,0.1212,0.0
+netflow-300s,300.0,burst,17.0,1.0,1.0
+netflow-300s,300.0,fast,50.0,1.0,1.0
+netflow-300s,300.0,throttled,167.0,1.0,1.0
+netflow-300s,300.0,drip,500.0,0.6004,0.0
+iosxr-1800s,1800.0,burst,17.0,1.0,1.0
+iosxr-1800s,1800.0,fast,50.0,1.0,1.0
+iosxr-1800s,1800.0,throttled,167.0,1.0,1.0
+iosxr-1800s,1800.0,drip,500.0,1.0,1.0

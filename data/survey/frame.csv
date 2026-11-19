@@ -1,0 +1,40 @@
+key,channel,scope,scope_basis
+cai2025edxgb,other,exfiltration,"second coder: on-topic, unit undetermined from what it could read"
+willems2023neds,other,exfiltration,second coder: included
+marchetti2016apt,other,exfiltration,second coder: included
+powell2019overtones,other,exfiltration,second coder: included
+muntaka2026i2p,other,exfiltration,second coder: included
+javeed2026netburstx,other,exfiltration,second coder: included
+alsaraireh2022apt,other,exfiltration,"second coder: on-topic, unit undetermined from what it could read"
+hoferschmitz2021features,other,general_nids,second coder: CICIDS2017 Monday + Contagio APT traces; no exfiltration class in the evaluation
+elaoumari2025doh,dns,exfiltration,second coder: included
+sarhan2022featuresets,other,exfiltration,second coder: included
+schraven2025mawiflow,other,general_nids,second coder: flow-based benchmark on MAWILab labels; no exfiltration class
+talukder2024imbalanced,other,general_nids,"second coder: general NIDS on UNSW-NB15, CIC-IDS2017/2018; no exfiltration class"
+fosic2023netflow,other,general_nids,second coder: normal-vs-abnormal on UNSW-NB15; no exfiltration class
+krishnamurthy2021annotations,other,general_nids,second coder: general NetFlow anomaly detection; no exfiltration class in the abstract
+maseer2021benchmark,other,general_nids,second coder: multiclass CICIDS2017 benchmark; no exfiltration class named
+apruzzese2022crosseval,other,general_nids,"second coder: general ML-NIDS cross-evaluation; Botnet/DoS/Other, no exfiltration class"
+verkerken2022generalization,other,general_nids,second coder: CIC-IDS-2017 and CSE-CIC-IDS-2018; no exfiltration class
+magancarrion2020methodology,other,general_nids,"second coder: general NIDS benchmark on UGR'16 (Botnet, DoS, Scan, Spam); no exfiltration class"
+silva2022bias,other,general_nids,second coder: dataset-bias methodology on NSL-KDD/KDD'99; no exfiltration class
+chua2023progressive,other,general_nids,second coder: binary NIDS on CIC-IDS2017/CSE-CIC-IDS2018 and LUFlow; no exfiltration class
+viegas2023reliable,other,general_nids,"second coder: evaluation methodology on MAWIFlow, DARPA1998, Fine-Grained Dataset; no exfiltration class"
+dehlaghi2023icsflow,other,general_nids,"second coder: ICS dataset; attacks (scan, replay, DDoS, MitM) include no exfiltration class"
+elmahdaouy2026contextual,other,survey,second coder: pure survey (protocol exclusion)
+abualghanam2023dns,dns,exfiltration,second coder: included
+sandhya2025dnsexfil,dns,exfiltration,second coder: included
+dijk2021dpi,other,exfiltration,second coder: included
+asian2024dpi,other,exfiltration,second coder: included
+janatiidrissi2025timeouts,other,general_nids,"second coder: datasets (USTC-TFC2016, CICIDS2017, UNSW-NB15, CUPID) contain no exfiltration class"
+hofstede2013realtime,other,general_nids,second coder: detects DDoS flooding only; no exfiltration class
+kamamura2023granularity,other,general_nids,second coder: service-failure anomalies in carrier traffic; not intrusion or exfiltration
+zhang2013adaptive,other,general_nids,second coder: SDN traffic anomaly detection; no exfiltration in the text read
+ahmed2020dnsmonitoring,dns,exfiltration,second coder: included
+mahdavifar2021dnsexf,dns,exfiltration,second coder: included
+dangelo2022dnsimages,dns,exfiltration,second coder: included
+lambion2020dnst,dns,exfiltration,"second coder: on-topic, unit undetermined from what it could read"
+chowdhary2021cachemiss,dns,exfiltration,second coder: included
+acikgozoglu2024dnscomparison,dns,exfiltration,second coder: included
+bykov2024dnstunnels,dns,exfiltration,"second coder: on-topic, unit undetermined from what it could read"
+gautam2026dnscnn,dns,exfiltration,second coder: included

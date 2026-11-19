@@ -1,0 +1,441 @@
+== 1. Refresh the published four-family table (hashes, admissible flag, neutral H1 wording) ==
+   Building exfil-ebd @ file:///Users/snow/Desktop/PhD/EBD/exfil-ebd
+      Built exfil-ebd @ file:///Users/snow/Desktop/PhD/EBD/exfil-ebd
+Uninstalled 1 package in 7ms
+Installed 1 package in 18ms
+flow rows: 181345   reconstructed episodes: 7
+held-out episodes present in both: 7
+benign: 147829 flows in 6668 sessions -> held out 80778 in 3334 sessions
+train rows 94879 (exfil 1834, other 93045)
+
+=== EDXGB (reproduced) ===
+  F1=0.480 (thr=0.45, P=0.33, R=0.86)   EBD=18.46%  mean bytes lost=0.142 MB  detect_rate=86%  FPB(heldout)=0.45% [0.27%, 0.74%]  (EBD thr 0.40; train 0.15%, upper 0.35%, rule wilson)
+=== XGBoost (default) ===
+  F1=0.800 (thr=0.20, P=0.75, R=0.86)   EBD=27.52%  mean bytes lost=0.332 MB  detect_rate=86%  FPB(heldout)=0.15% [0.06%, 0.35%]  (EBD thr 0.05; train 0.00%, upper 0.12%, rule wilson)
+=== Random Forest ===
+  F1=0.625 (thr=0.30, P=0.56, R=0.71)   EBD=9.00%  mean bytes lost=0.167 MB  detect_rate=100%  FPB(heldout)=1.20% [0.88%, 1.63%]  (EBD thr 0.05; train 0.57%, upper 0.89%, rule wilson)
+=== Logistic Regression ===
+  F1=0.127 (thr=0.75, P=0.07, R=1.00)   EBD=58.10%  mean bytes lost=1.154 MB  detect_rate=43%  FPB(heldout)=1.20% [0.88%, 1.63%]  (EBD thr 0.95; train 1.53%, upper 2.01%, rule wilson)
+
+detector            F1-rank   EBD-rank
+-------------------------------------
+EDXGB (reproduced)       3         2
+Logistic Regression       4         4
+Random Forest            2         1
+XGBoost (default)        1         3
+-------------------------------------
+Kendall tau = +0.333  p = 0.750  -> tau below 0.5: divergent by the H1 criterion
+
+leave-one-episode-out tau sensitivity:
+  exclude 10.1.3.8->10.8.10.84:443@16243   tau=+0.000  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1625   tau=+0.333  diverges=True
+
+wrote results/real_multimodel_{summary,per_episode,maxscores,sensitivity,sweep}_wilson.csv, results/real_multimodel_h1_wilson.txt
+== 2. Four families: quantile grid, out-of-fold calibration, both negative policies ==
+flow rows: 181345   reconstructed episodes: 7
+held-out episodes present in both: 7
+benign: 147829 flows in 6668 sessions -> held out 80778 in 3334 sessions
+train rows 94879 (exfil 1834, other 93045)
+
+=== EDXGB (reproduced) ===
+  F1=0.480 (thr=0.45, P=0.33, R=0.86)   EBD=18.46%  mean bytes lost=0.142 MB  detect_rate=86%  FPB(heldout)=0.45% [0.27%, 0.74%]  (EBD thr 0.41; train 0.48%, upper 0.78%, rule wilson)
+=== XGBoost (default) ===
+  F1=0.800 (thr=0.20, P=0.75, R=0.86)   EBD=5.39%  mean bytes lost=0.082 MB  detect_rate=100%  FPB(heldout)=0.45% [0.27%, 0.74%]  (EBD thr 0.00; train 0.63%, upper 0.96%, rule wilson)
+=== Random Forest ===
+  F1=0.625 (thr=0.30, P=0.56, R=0.71)   EBD=20.81%  mean bytes lost=0.419 MB  detect_rate=100%  FPB(heldout)=0.48% [0.30%, 0.78%]  (EBD thr 0.10; train 0.66%, upper 1.00%, rule wilson)
+=== Logistic Regression ===
+  F1=0.194 (thr=0.90, P=0.11, R=0.86)   EBD=86.24%  mean bytes lost=1.219 MB  detect_rate=14%  FPB(heldout)=0.54% [0.34%, 0.85%]  (EBD thr 1.00; train 0.66%, upper 1.00%, rule wilson)
+
+detector            F1-rank   EBD-rank
+-------------------------------------
+EDXGB (reproduced)       3         2
+Logistic Regression       4         4
+Random Forest            2         3
+XGBoost (default)        1         1
+-------------------------------------
+Kendall tau = +0.667  p = 0.333  -> tau at or above 0.5: agree by the H1 criterion
+
+leave-one-episode-out tau sensitivity:
+  exclude 10.1.3.8->10.8.10.84:443@16243   tau=+0.667  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.667  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+0.667  diverges=False
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+0.667  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1625   tau=+0.667  diverges=False
+
+wrote results/real_multimodel_{summary,per_episode,maxscores,sensitivity,sweep}_wilson_q_oof5_all.csv, results/real_multimodel_h1_wilson_q_oof5_all.txt
+flow rows: 181345   reconstructed episodes: 7
+held-out episodes present in both: 7
+benign: 147829 flows in 6668 sessions -> held out 80778 in 3334 sessions
+train rows 68885 (exfil 1834, other 67051)
+
+=== EDXGB (reproduced) ===
+  F1=0.538 (thr=0.60, P=0.37, R=1.00)   EBD=11.84%  mean bytes lost=0.231 MB  detect_rate=100%  FPB(heldout)=1.05% [0.76%, 1.46%]  (EBD thr 0.38; train 0.63%, upper 0.96%, rule wilson)
+=== XGBoost (default) ===
+  F1=0.933 (thr=0.45, P=0.88, R=1.00)   EBD=5.31%  mean bytes lost=0.085 MB  detect_rate=100%  FPB(heldout)=0.87% [0.61%, 1.25%]  (EBD thr 0.00; train 0.66%, upper 1.00%, rule wilson)
+=== Random Forest ===
+  F1=0.875 (thr=0.45, P=0.78, R=1.00)   EBD=7.28%  mean bytes lost=0.151 MB  detect_rate=100%  FPB(heldout)=0.51% [0.32%, 0.82%]  (EBD thr 0.14; train 0.63%, upper 0.96%, rule wilson)
+=== Logistic Regression ===
+  F1=0.152 (thr=0.85, P=0.08, R=0.86)   EBD=79.11%  mean bytes lost=1.047 MB  detect_rate=29%  FPB(heldout)=0.51% [0.32%, 0.82%]  (EBD thr 1.00; train 0.66%, upper 1.00%, rule wilson)
+
+detector            F1-rank   EBD-rank
+-------------------------------------
+EDXGB (reproduced)       3         3
+Logistic Regression       4         4
+Random Forest            2         2
+XGBoost (default)        1         1
+-------------------------------------
+Kendall tau = +1.000  p = 0.083  -> tau at or above 0.5: agree by the H1 criterion
+
+leave-one-episode-out tau sensitivity:
+  exclude 10.1.3.8->10.8.10.84:443@16243   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.667  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1625   tau=+1.000  diverges=False
+
+wrote results/real_multimodel_{summary,per_episode,maxscores,sensitivity,sweep}_wilson_q_oof5_benign.csv, results/real_multimodel_h1_wilson_q_oof5_benign.txt
+== 3. EDXGB features: strict and LOO x negatives x {full,no_ports,ports_only,peer_rule} ==
+train rows 94879 (exfil 1834); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4094 FPB 0.45% unitAUC 0.991 [0.94,1.00] flowAUC 0.836 fired 6/7 at-floor 5/7 mean nEBD 18.46% median 1.27%
+no_ports    [all] thr 0.478 FPB 0.42% unitAUC 0.997 [0.97,1.00] flowAUC 0.921 fired 6/7 at-floor 2/7 mean nEBD 29.33% median 3.46%
+ports_only  [all] thr 0.55 FPB 0.00% unitAUC 0.967 [0.87,1.00] flowAUC 0.836 fired 2/7 at-floor 2/7 mean nEBD 71.86% median 100.00%
+peer_rule   [all] thr 0.5 FPB 0.03% unitAUC 1.000 [0.99,1.00] flowAUC 1.000 fired 7/7 at-floor 7/7 mean nEBD 0.76% median 0.42%
+wrote results/round5/baseline_strict_all.csv
+wrote results/round5/baseline_strict_all_episodes.csv
+train rows 94879 (exfil 1834); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4094 FPB 0.45% unitAUC 0.998 [0.97,1.00] flowAUC 0.996 fired 6/7 at-floor 5/7 mean nEBD 21.35% median 1.03%
+no_ports    [all] thr 0.478 FPB 0.42% unitAUC 0.999 [0.98,1.00] flowAUC 0.979 fired 7/7 at-floor 6/7 mean nEBD 7.29% median 1.03%
+ports_only  [all] thr 0.55 FPB 0.00% unitAUC 1.000 [1.00,1.00] flowAUC 0.993 fired 7/7 at-floor 5/7 mean nEBD 14.26% median 1.03%
+peer_rule   [all] thr 0.5 FPB 0.03% unitAUC 1.000 [0.99,1.00] flowAUC 1.000 fired 7/7 at-floor 7/7 mean nEBD 0.76% median 0.42%
+wrote results/round5/baseline_loo_all.csv
+wrote results/round5/baseline_loo_all_episodes.csv
+train rows 68885 (exfil 1834); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3849 FPB 1.05% unitAUC 0.998 [0.98,1.00] flowAUC 0.862 fired 7/7 at-floor 4/7 mean nEBD 11.84% median 1.99%
+no_ports    [all] thr 0.5043 FPB 0.27% unitAUC 1.000 [0.99,1.00] flowAUC 0.953 fired 7/7 at-floor 6/7 mean nEBD 7.29% median 1.03%
+ports_only  [all] thr 0.55 FPB 0.00% unitAUC 0.940 [0.82,1.00] flowAUC 0.834 fired 2/7 at-floor 2/7 mean nEBD 71.86% median 100.00%
+peer_rule   [all] thr 0.5 FPB 0.03% unitAUC 1.000 [0.99,1.00] flowAUC 1.000 fired 7/7 at-floor 7/7 mean nEBD 0.76% median 0.42%
+wrote results/round5/baseline_strict_benign.csv
+wrote results/round5/baseline_strict_benign_episodes.csv
+train rows 68885 (exfil 1834); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3849 FPB 1.05% unitAUC 1.000 [1.00,1.00] flowAUC 1.000 fired 7/7 at-floor 6/7 mean nEBD 7.29% median 1.03%
+no_ports    [all] thr 0.5043 FPB 0.27% unitAUC 1.000 [0.99,1.00] flowAUC 0.999 fired 7/7 at-floor 5/7 mean nEBD 8.37% median 1.03%
+ports_only  [all] thr 0.55 FPB 0.00% unitAUC 1.000 [1.00,1.00] flowAUC 0.994 fired 7/7 at-floor 4/7 mean nEBD 17.92% median 1.99%
+peer_rule   [all] thr 0.5 FPB 0.03% unitAUC 1.000 [0.99,1.00] flowAUC 1.000 fired 7/7 at-floor 7/7 mean nEBD 0.76% median 0.42%
+wrote results/round5/baseline_loo_benign.csv
+wrote results/round5/baseline_loo_benign_episodes.csv
+== 4. Variance: 10 exfiltration bootstraps x 10 benign splits (full, no_ports; strict and LOO) ==
+train rows 94847 (exfil 1802); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4 FPB 0.54% unitAUC 0.840 [0.66,1.00] flowAUC 0.609 fired 5/7 at-floor 3/7 mean nEBD 42.45% median 7.74%
+no_ports    [all] thr 0.4126 FPB 0.87% unitAUC 0.997 [0.97,1.00] flowAUC 0.674 fired 7/7 at-floor 6/7 mean nEBD 7.36% median 1.03%
+wrote results/round5/var_strict_all_20260815.csv
+wrote results/round5/var_strict_all_20260815_episodes.csv
+train rows 94847 (exfil 1802); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4 FPB 0.54% unitAUC 0.999 [0.98,1.00] flowAUC 0.993 fired 6/7 at-floor 5/7 mean nEBD 21.35% median 1.03%
+no_ports    [all] thr 0.4126 FPB 0.87% unitAUC 0.995 [0.96,1.00] flowAUC 0.979 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round5/var_loo_all_20260815.csv
+wrote results/round5/var_loo_all_20260815_episodes.csv
+train rows 108396 (exfil 1824); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3975 FPB 0.51% unitAUC 0.995 [0.96,1.00] flowAUC 0.836 fired 6/7 at-floor 5/7 mean nEBD 27.13% median 1.03%
+no_ports    [all] thr 0.4851 FPB 0.12% unitAUC 0.999 [0.98,1.00] flowAUC 0.875 fired 7/7 at-floor 4/7 mean nEBD 9.68% median 1.99%
+wrote results/round5/var_strict_all_20260816.csv
+wrote results/round5/var_strict_all_20260816_episodes.csv
+train rows 108396 (exfil 1824); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3975 FPB 0.51% unitAUC 0.998 [0.98,1.00] flowAUC 0.994 fired 6/7 at-floor 5/7 mean nEBD 21.35% median 1.03%
+no_ports    [all] thr 0.4851 FPB 0.12% unitAUC 0.997 [0.97,1.00] flowAUC 0.925 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round5/var_loo_all_20260816.csv
+wrote results/round5/var_loo_all_20260816_episodes.csv
+train rows 111335 (exfil 1792); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3946 FPB 0.42% unitAUC 0.999 [0.98,1.00] flowAUC 0.820 fired 7/7 at-floor 3/7 mean nEBD 28.09% median 9.04%
+no_ports    [all] thr 0.55 FPB 0.36% unitAUC 0.994 [0.95,1.00] flowAUC 0.886 fired 5/7 at-floor 2/7 mean nEBD 56.28% median 46.01%
+wrote results/round5/var_strict_all_20260817.csv
+wrote results/round5/var_strict_all_20260817_episodes.csv
+train rows 111335 (exfil 1792); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3946 FPB 0.42% unitAUC 0.999 [0.98,1.00] flowAUC 0.994 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+no_ports    [all] thr 0.55 FPB 0.36% unitAUC 0.995 [0.96,1.00] flowAUC 0.951 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round5/var_loo_all_20260817.csv
+wrote results/round5/var_loo_all_20260817_episodes.csv
+train rows 90011 (exfil 1824); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4 FPB 0.30% unitAUC 0.839 [0.66,1.00] flowAUC 0.621 fired 5/7 at-floor 4/7 mean nEBD 41.36% median 1.99%
+no_ports    [all] thr 0.3975 FPB 0.63% unitAUC 0.998 [0.97,1.00] flowAUC 0.942 fired 6/7 at-floor 3/7 mean nEBD 23.61% median 6.33%
+wrote results/round5/var_strict_all_20260818.csv
+wrote results/round5/var_strict_all_20260818_episodes.csv
+train rows 90011 (exfil 1824); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4 FPB 0.30% unitAUC 0.999 [0.99,1.00] flowAUC 0.997 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+no_ports    [all] thr 0.3975 FPB 0.63% unitAUC 0.992 [0.94,1.00] flowAUC 0.983 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round5/var_loo_all_20260818.csv
+wrote results/round5/var_loo_all_20260818_episodes.csv
+train rows 87792 (exfil 1851); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3854 FPB 1.05% unitAUC 0.989 [0.93,1.00] flowAUC 0.833 fired 6/7 at-floor 5/7 mean nEBD 27.13% median 1.03%
+no_ports    [all] thr 0.5 FPB 0.72% unitAUC 0.992 [0.94,1.00] flowAUC 0.935 fired 4/7 at-floor 2/7 mean nEBD 57.12% median 50.78%
+wrote results/round5/var_strict_all_20260819.csv
+wrote results/round5/var_strict_all_20260819_episodes.csv
+train rows 87792 (exfil 1851); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3854 FPB 1.05% unitAUC 0.999 [0.98,1.00] flowAUC 0.995 fired 7/7 at-floor 5/7 mean nEBD 8.51% median 1.03%
+no_ports    [all] thr 0.5 FPB 0.72% unitAUC 0.993 [0.95,1.00] flowAUC 0.976 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round5/var_loo_all_20260819.csv
+wrote results/round5/var_loo_all_20260819_episodes.csv
+train rows 117709 (exfil 1792); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3778 FPB 0.15% unitAUC 0.838 [0.65,1.00] flowAUC 0.616 fired 5/7 at-floor 4/7 mean nEBD 41.36% median 1.99%
+no_ports    [all] thr 0.4132 FPB 0.87% unitAUC 0.996 [0.96,1.00] flowAUC 0.853 fired 6/7 at-floor 5/7 mean nEBD 21.45% median 1.06%
+wrote results/round5/var_strict_all_20260820.csv
+wrote results/round5/var_strict_all_20260820_episodes.csv
+train rows 117709 (exfil 1792); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3778 FPB 0.15% unitAUC 1.000 [0.99,1.00] flowAUC 0.996 fired 7/7 at-floor 6/7 mean nEBD 7.29% median 1.03%
+no_ports    [all] thr 0.4132 FPB 0.87% unitAUC 0.997 [0.97,1.00] flowAUC 0.978 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round5/var_loo_all_20260820.csv
+wrote results/round5/var_loo_all_20260820_episodes.csv
+train rows 93802 (exfil 1836); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3744 FPB 0.09% unitAUC 0.914 [0.77,1.00] flowAUC 0.618 fired 5/7 at-floor 4/7 mean nEBD 41.36% median 1.99%
+no_ports    [all] thr 0.3875 FPB 0.60% unitAUC 0.961 [0.86,1.00] flowAUC 0.385 fired 3/7 at-floor 2/7 mean nEBD 65.03% median 100.00%
+wrote results/round5/var_strict_all_20260821.csv
+wrote results/round5/var_strict_all_20260821_episodes.csv
+train rows 93802 (exfil 1836); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3744 FPB 0.09% unitAUC 1.000 [0.99,1.00] flowAUC 0.997 fired 7/7 at-floor 7/7 mean nEBD 0.76% median 0.42%
+no_ports    [all] thr 0.3875 FPB 0.60% unitAUC 0.998 [0.98,1.00] flowAUC 0.977 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round5/var_loo_all_20260821.csv
+wrote results/round5/var_loo_all_20260821_episodes.csv
+train rows 93663 (exfil 1914); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3894 FPB 0.51% unitAUC 0.996 [0.96,1.00] flowAUC 0.824 fired 6/7 at-floor 4/7 mean nEBD 31.64% median 1.99%
+no_ports    [all] thr 0.5 FPB 0.09% unitAUC 0.998 [0.98,1.00] flowAUC 0.842 fired 6/7 at-floor 3/7 mean nEBD 28.72% median 6.33%
+wrote results/round5/var_strict_all_20260822.csv
+wrote results/round5/var_strict_all_20260822_episodes.csv
+train rows 93663 (exfil 1914); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3894 FPB 0.51% unitAUC 0.998 [0.98,1.00] flowAUC 0.994 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+no_ports    [all] thr 0.5 FPB 0.09% unitAUC 0.997 [0.97,1.00] flowAUC 0.978 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round5/var_loo_all_20260822.csv
+wrote results/round5/var_loo_all_20260822_episodes.csv
+train rows 108635 (exfil 1830); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3904 FPB 0.69% unitAUC 0.986 [0.93,1.00] flowAUC 0.825 fired 4/7 at-floor 4/7 mean nEBD 43.36% median 1.99%
+no_ports    [all] thr 0.4625 FPB 0.66% unitAUC 0.966 [0.87,1.00] flowAUC 0.697 fired 3/7 at-floor 2/7 mean nEBD 58.10% median 100.00%
+wrote results/round5/var_strict_all_20260823.csv
+wrote results/round5/var_strict_all_20260823_episodes.csv
+train rows 108635 (exfil 1830); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3904 FPB 0.69% unitAUC 0.999 [0.98,1.00] flowAUC 0.994 fired 7/7 at-floor 6/7 mean nEBD 7.28% median 1.03%
+no_ports    [all] thr 0.4625 FPB 0.66% unitAUC 0.995 [0.96,1.00] flowAUC 0.925 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round5/var_loo_all_20260823.csv
+wrote results/round5/var_loo_all_20260823_episodes.csv
+train rows 113625 (exfil 1836); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3901 FPB 0.75% unitAUC 0.998 [0.97,1.00] flowAUC 0.842 fired 6/7 at-floor 5/7 mean nEBD 27.13% median 1.03%
+no_ports    [all] thr 0.55 FPB 0.09% unitAUC 0.998 [0.97,1.00] flowAUC 0.908 fired 6/7 at-floor 3/7 mean nEBD 29.85% median 14.66%
+wrote results/round5/var_strict_all_20260824.csv
+wrote results/round5/var_strict_all_20260824_episodes.csv
+train rows 113625 (exfil 1836); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3901 FPB 0.75% unitAUC 0.999 [0.98,1.00] flowAUC 0.994 fired 6/7 at-floor 6/7 mean nEBD 14.85% median 0.42%
+no_ports    [all] thr 0.55 FPB 0.09% unitAUC 0.997 [0.97,1.00] flowAUC 0.923 fired 6/7 at-floor 6/7 mean nEBD 14.85% median 0.42%
+wrote results/round5/var_loo_all_20260824.csv
+wrote results/round5/var_loo_all_20260824_episodes.csv
+train rows 68853 (exfil 1802); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4 FPB 0.51% unitAUC 0.840 [0.66,1.00] flowAUC 0.608 fired 5/7 at-floor 3/7 mean nEBD 42.59% median 8.72%
+no_ports    [all] thr 0.3911 FPB 0.72% unitAUC 1.000 [0.99,1.00] flowAUC 0.998 fired 7/7 at-floor 6/7 mean nEBD 7.29% median 1.03%
+wrote results/round5/var_strict_benign_20260815.csv
+wrote results/round5/var_strict_benign_20260815_episodes.csv
+train rows 68853 (exfil 1802); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4 FPB 0.51% unitAUC 1.000 [1.00,1.00] flowAUC 0.999 fired 7/7 at-floor 6/7 mean nEBD 7.29% median 1.03%
+no_ports    [all] thr 0.3911 FPB 0.72% unitAUC 1.000 [0.99,1.00] flowAUC 1.000 fired 7/7 at-floor 5/7 mean nEBD 7.76% median 1.03%
+wrote results/round5/var_loo_benign_20260815.csv
+wrote results/round5/var_loo_benign_20260815_episodes.csv
+train rows 82402 (exfil 1824); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3941 FPB 0.78% unitAUC 0.996 [0.96,1.00] flowAUC 0.855 fired 6/7 at-floor 5/7 mean nEBD 18.71% median 1.03%
+no_ports    [all] thr 0.5 FPB 0.42% unitAUC 0.999 [0.99,1.00] flowAUC 0.998 fired 7/7 at-floor 6/7 mean nEBD 7.29% median 1.03%
+wrote results/round5/var_strict_benign_20260816.csv
+wrote results/round5/var_strict_benign_20260816_episodes.csv
+train rows 82402 (exfil 1824); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3941 FPB 0.78% unitAUC 1.000 [1.00,1.00] flowAUC 0.999 fired 7/7 at-floor 5/7 mean nEBD 7.94% median 1.03%
+no_ports    [all] thr 0.5 FPB 0.42% unitAUC 1.000 [1.00,1.00] flowAUC 0.995 fired 7/7 at-floor 5/7 mean nEBD 8.77% median 1.03%
+wrote results/round5/var_loo_benign_20260816.csv
+wrote results/round5/var_loo_benign_20260816_episodes.csv
+train rows 85341 (exfil 1792); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3785 FPB 0.12% unitAUC 0.999 [0.99,1.00] flowAUC 0.858 fired 7/7 at-floor 5/7 mean nEBD 5.43% median 1.03%
+no_ports    [all] thr 0.55 FPB 1.11% unitAUC 0.998 [0.97,1.00] flowAUC 0.998 fired 7/7 at-floor 6/7 mean nEBD 7.29% median 1.03%
+wrote results/round5/var_strict_benign_20260817.csv
+wrote results/round5/var_strict_benign_20260817_episodes.csv
+train rows 85341 (exfil 1792); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3785 FPB 0.12% unitAUC 0.999 [0.99,1.00] flowAUC 1.000 fired 7/7 at-floor 6/7 mean nEBD 7.28% median 1.03%
+no_ports    [all] thr 0.55 FPB 1.11% unitAUC 0.999 [0.99,1.00] flowAUC 0.997 fired 7/7 at-floor 5/7 mean nEBD 7.76% median 1.03%
+wrote results/round5/var_loo_benign_20260817.csv
+wrote results/round5/var_loo_benign_20260817_episodes.csv
+train rows 64017 (exfil 1824); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3758 FPB 0.24% unitAUC 0.840 [0.66,1.00] flowAUC 0.610 fired 5/7 at-floor 3/7 mean nEBD 42.49% median 8.04%
+no_ports    [all] thr 0.3902 FPB 0.63% unitAUC 0.998 [0.97,1.00] flowAUC 0.996 fired 7/7 at-floor 5/7 mean nEBD 8.77% median 1.03%
+wrote results/round5/var_strict_benign_20260818.csv
+wrote results/round5/var_strict_benign_20260818_episodes.csv
+train rows 64017 (exfil 1824); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3758 FPB 0.24% unitAUC 1.000 [1.00,1.00] flowAUC 1.000 fired 7/7 at-floor 6/7 mean nEBD 7.28% median 1.03%
+no_ports    [all] thr 0.3902 FPB 0.63% unitAUC 0.999 [0.99,1.00] flowAUC 1.000 fired 7/7 at-floor 5/7 mean nEBD 7.75% median 1.03%
+wrote results/round5/var_loo_benign_20260818.csv
+wrote results/round5/var_loo_benign_20260818_episodes.csv
+train rows 61798 (exfil 1851); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3763 FPB 0.57% unitAUC 1.000 [0.99,1.00] flowAUC 0.862 fired 7/7 at-floor 4/7 mean nEBD 11.84% median 1.99%
+no_ports    [all] thr 0.4377 FPB 0.81% unitAUC 0.997 [0.97,1.00] flowAUC 0.996 fired 7/7 at-floor 5/7 mean nEBD 7.60% median 1.03%
+wrote results/round5/var_strict_benign_20260819.csv
+wrote results/round5/var_strict_benign_20260819_episodes.csv
+train rows 61798 (exfil 1851); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3763 FPB 0.57% unitAUC 1.000 [0.99,1.00] flowAUC 1.000 fired 7/7 at-floor 6/7 mean nEBD 7.28% median 1.03%
+no_ports    [all] thr 0.4377 FPB 0.81% unitAUC 0.997 [0.97,1.00] flowAUC 0.997 fired 7/7 at-floor 5/7 mean nEBD 7.76% median 1.03%
+wrote results/round5/var_loo_benign_20260819.csv
+wrote results/round5/var_loo_benign_20260819_episodes.csv
+train rows 91715 (exfil 1792); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3894 FPB 0.33% unitAUC 0.915 [0.77,1.00] flowAUC 0.616 fired 5/7 at-floor 4/7 mean nEBD 41.36% median 1.99%
+no_ports    [all] thr 0.3922 FPB 0.69% unitAUC 0.999 [0.98,1.00] flowAUC 0.998 fired 7/7 at-floor 6/7 mean nEBD 7.30% median 1.06%
+wrote results/round5/var_strict_benign_20260820.csv
+wrote results/round5/var_strict_benign_20260820_episodes.csv
+train rows 91715 (exfil 1792); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3894 FPB 0.33% unitAUC 1.000 [1.00,1.00] flowAUC 1.000 fired 7/7 at-floor 6/7 mean nEBD 7.28% median 1.03%
+no_ports    [all] thr 0.3922 FPB 0.69% unitAUC 1.000 [1.00,1.00] flowAUC 0.997 fired 7/7 at-floor 5/7 mean nEBD 8.76% median 1.03%
+wrote results/round5/var_loo_benign_20260820.csv
+wrote results/round5/var_loo_benign_20260820_episodes.csv
+train rows 67808 (exfil 1836); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4 FPB 0.09% unitAUC 0.915 [0.77,1.00] flowAUC 0.618 fired 3/7 at-floor 2/7 mean nEBD 71.84% median 100.00%
+no_ports    [all] thr 0.3845 FPB 1.11% unitAUC 0.997 [0.97,1.00] flowAUC 0.998 fired 7/7 at-floor 6/7 mean nEBD 7.29% median 1.03%
+wrote results/round5/var_strict_benign_20260821.csv
+wrote results/round5/var_strict_benign_20260821_episodes.csv
+train rows 67808 (exfil 1836); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4 FPB 0.09% unitAUC 1.000 [1.00,1.00] flowAUC 1.000 fired 7/7 at-floor 5/7 mean nEBD 7.75% median 1.03%
+no_ports    [all] thr 0.3845 FPB 1.11% unitAUC 0.998 [0.98,1.00] flowAUC 0.997 fired 7/7 at-floor 5/7 mean nEBD 8.76% median 1.03%
+wrote results/round5/var_loo_benign_20260821.csv
+wrote results/round5/var_loo_benign_20260821_episodes.csv
+train rows 67669 (exfil 1914); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3946 FPB 0.09% unitAUC 1.000 [1.00,1.00] flowAUC 0.856 fired 7/7 at-floor 5/7 mean nEBD 5.62% median 1.03%
+no_ports    [all] thr 0.5 FPB 0.84% unitAUC 1.000 [1.00,1.00] flowAUC 0.998 fired 7/7 at-floor 5/7 mean nEBD 8.78% median 1.03%
+wrote results/round5/var_strict_benign_20260822.csv
+wrote results/round5/var_strict_benign_20260822_episodes.csv
+train rows 67669 (exfil 1914); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3946 FPB 0.09% unitAUC 1.000 [1.00,1.00] flowAUC 1.000 fired 7/7 at-floor 6/7 mean nEBD 7.28% median 1.03%
+no_ports    [all] thr 0.5 FPB 0.84% unitAUC 1.000 [1.00,1.00] flowAUC 0.999 fired 7/7 at-floor 5/7 mean nEBD 8.76% median 1.03%
+wrote results/round5/var_loo_benign_20260822.csv
+wrote results/round5/var_loo_benign_20260822_episodes.csv
+train rows 82641 (exfil 1830); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4 FPB 0.54% unitAUC 0.990 [0.94,1.00] flowAUC 0.824 fired 4/7 at-floor 3/7 mean nEBD 47.11% median 26.31%
+no_ports    [all] thr 0.5 FPB 0.48% unitAUC 0.999 [0.98,1.00] flowAUC 0.998 fired 7/7 at-floor 7/7 mean nEBD 0.81% median 0.42%
+wrote results/round5/var_strict_benign_20260823.csv
+wrote results/round5/var_strict_benign_20260823_episodes.csv
+train rows 82641 (exfil 1830); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4 FPB 0.54% unitAUC 1.000 [1.00,1.00] flowAUC 1.000 fired 7/7 at-floor 5/7 mean nEBD 7.76% median 1.03%
+no_ports    [all] thr 0.5 FPB 0.48% unitAUC 1.000 [0.99,1.00] flowAUC 0.997 fired 7/7 at-floor 5/7 mean nEBD 7.76% median 1.03%
+wrote results/round5/var_loo_benign_20260823.csv
+wrote results/round5/var_loo_benign_20260823_episodes.csv
+train rows 87631 (exfil 1836); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4 FPB 0.18% unitAUC 0.999 [0.99,1.00] flowAUC 0.856 fired 7/7 at-floor 4/7 mean nEBD 12.08% median 1.99%
+no_ports    [all] thr 0.5314 FPB 0.33% unitAUC 1.000 [0.99,1.00] flowAUC 0.998 fired 7/7 at-floor 5/7 mean nEBD 7.60% median 1.03%
+wrote results/round5/var_strict_benign_20260824.csv
+wrote results/round5/var_strict_benign_20260824_episodes.csv
+train rows 87631 (exfil 1836); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4 FPB 0.18% unitAUC 1.000 [1.00,1.00] flowAUC 1.000 fired 7/7 at-floor 5/7 mean nEBD 18.65% median 1.03%
+no_ports    [all] thr 0.5314 FPB 0.33% unitAUC 1.000 [1.00,1.00] flowAUC 0.997 fired 7/7 at-floor 5/7 mean nEBD 8.76% median 1.03%
+wrote results/round5/var_loo_benign_20260824.csv
+wrote results/round5/var_loo_benign_20260824_episodes.csv
+== 5. Destination-disjoint split (read no_ports only) ==
+train rows 94879 (exfil 1834); held-out benign keys 3334; training benign keys 3334
+no_ports    [10.1.5.21:3306] thr 0.65 FPB 0.00% unitAUC 0.968 [0.80,1.00] flowAUC 0.984 fired 0/2 at-floor 0/2 mean nEBD 100.00% median 100.00%
+no_ports    [10.8.10.84:443] thr 0.4 FPB 0.33% unitAUC 0.771 [0.53,1.00] flowAUC 0.422 fired 0/5 at-floor 0/5 mean nEBD 100.00% median 100.00%
+wrote results/round5/peer_disjoint_all.csv
+wrote results/round5/peer_disjoint_all_episodes.csv
+train rows 68885 (exfil 1834); held-out benign keys 3334; training benign keys 3334
+no_ports    [10.1.5.21:3306] thr 0.65 FPB 0.00% unitAUC 0.943 [0.72,1.00] flowAUC 0.977 fired 0/2 at-floor 0/2 mean nEBD 100.00% median 100.00%
+no_ports    [10.8.10.84:443] thr 0.4 FPB 0.30% unitAUC 0.697 [0.44,0.96] flowAUC 0.427 fired 0/5 at-floor 0/5 mean nEBD 100.00% median 100.00%
+wrote results/round5/peer_disjoint_benign.csv
+wrote results/round5/peer_disjoint_benign_episodes.csv
+== 6. Sandbox analyses, re-run for the manifest ==
+held-out benign keys 3334; training benign keys 3334; episodes 7
+bytes_out    thr 421697       FPB 0.51% unitAUC 0.797 fired 2/7 at-floor 0/7 mean 85.15% median 100.00%
+bytes_total  thr 1.6788e+07   FPB 0.66% unitAUC 0.681 fired 1/7 at-floor 0/7 mean 92.87% median 100.00%
+random_00    thr 0.9996       FPB 0.45% unitAUC 0.988 fired 3/7 at-floor 0/7 mean 81.04% median 100.00%
+random_01    thr 0.9994       FPB 0.96% unitAUC 0.972 fired 1/7 at-floor 0/7 mean 96.92% median 100.00%
+random_02    thr 0.9995       FPB 0.90% unitAUC 0.959 fired 0/7 at-floor 0/7 mean 100.00% median 100.00%
+random_03    thr 0.9997       FPB 0.57% unitAUC 0.965 fired 1/7 at-floor 0/7 mean 93.37% median 100.00%
+random_04    thr 0.9997       FPB 0.39% unitAUC 0.963 fired 2/7 at-floor 0/7 mean 75.56% median 100.00%
+random_05    thr 0.9996       FPB 0.69% unitAUC 0.966 fired 1/7 at-floor 0/7 mean 94.25% median 100.00%
+random_06    thr 0.9997       FPB 0.66% unitAUC 0.968 fired 2/7 at-floor 0/7 mean 86.19% median 100.00%
+random_07    thr 0.9997       FPB 0.45% unitAUC 0.966 fired 3/7 at-floor 0/7 mean 83.11% median 100.00%
+random_08    thr 0.9995       FPB 0.84% unitAUC 0.978 fired 4/7 at-floor 0/7 mean 67.33% median 60.61%
+random_09    thr 0.9996       FPB 0.72% unitAUC 0.933 fired 1/7 at-floor 0/7 mean 90.97% median 100.00%
+random_10    thr 0.9994       FPB 0.87% unitAUC 0.969 fired 4/7 at-floor 0/7 mean 72.85% median 94.81%
+random_11    thr 0.9995       FPB 0.90% unitAUC 0.968 fired 3/7 at-floor 0/7 mean 90.77% median 100.00%
+random_12    thr 0.9994       FPB 1.08% unitAUC 0.958 fired 2/7 at-floor 0/7 mean 81.99% median 100.00%
+random_13    thr 0.9997       FPB 0.72% unitAUC 0.974 fired 3/7 at-floor 0/7 mean 79.80% median 100.00%
+random_14    thr 0.9996       FPB 0.84% unitAUC 0.963 fired 1/7 at-floor 0/7 mean 88.44% median 100.00%
+random_15    thr 0.9995       FPB 0.63% unitAUC 0.970 fired 1/7 at-floor 0/7 mean 93.14% median 100.00%
+random_16    thr 0.9996       FPB 0.57% unitAUC 0.946 fired 1/7 at-floor 0/7 mean 98.76% median 100.00%
+random_17    thr 0.9997       FPB 0.78% unitAUC 0.950 fired 1/7 at-floor 0/7 mean 92.59% median 100.00%
+random_18    thr 0.9995       FPB 0.93% unitAUC 0.960 fired 2/7 at-floor 0/7 mean 91.77% median 100.00%
+random_19    thr 0.9997       FPB 0.51% unitAUC 0.978 fired 1/7 at-floor 0/7 mean 87.68% median 100.00%
+
+random null (20): fired [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4]; at-floor [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; held-out FPB 0.39%-1.08%; unit AUC median 0.966
+wrote /Users/snow/Desktop/PhD/EBD/exfil-ebd/results/real_timing_baseline.csv
+wrote /Users/snow/Desktop/PhD/EBD/exfil-ebd/results/real_timing_baseline_episodes.csv
+all nominal episodes         n= 465 bytes=  15.878 MB  unweighted= 95.41%  byte-weighted=  2.89%  floor=1: 371
+single-flow                  n=  13 bytes=   0.008 MB  unweighted=100.00%  byte-weighted=100.00%  floor=1: 13
+multi-flow                   n= 452 bytes=  15.870 MB  unweighted= 95.28%  byte-weighted=  2.84%  floor=1: 358
+>= 0.1 MB (flow bytes)       n=   7 bytes=  15.302 MB  unweighted=  0.64%  byte-weighted=  0.45%  floor=1: 0
+< 0.1 MB (flow bytes)        n= 458 bytes=   0.576 MB  unweighted= 96.86%  byte-weighted= 67.63%  floor=1: 371
+
+validation on reconstructed episodes (flow approx vs packet floor):
+  10.1.3.8->10.8.10.84:443@1624318576.594       flow=  0.753%  pcap=  1.502%
+  10.1.3.17->10.8.10.84:443@1624665799.794      flow=  1.031%  pcap=  0.419%
+  10.1.3.17->10.8.10.84:443@1624784014.250      flow=  0.015%  pcap=  0.075%
+  10.1.3.17->10.8.10.84:443@1624863977.550      flow=  0.007%  pcap=  0.044%
+  10.1.3.17->10.1.5.21:3306@1625185759.453      flow=  0.668%  pcap=  1.035%
+  10.1.3.17->10.1.5.21:3306@1625199408.918      flow=  1.879%  pcap=  1.987%
+  10.1.3.17->10.8.10.84:443@1625264949.712      flow=  0.159%  pcap=  0.279%
+R=     0s  mean floor+R=  0.76%  mean detector+R= 18.46%    1.3    2.0    1.0  100.0    0.4    0.4   24.1
+R=   300s  mean floor+R= 15.29%  mean detector+R= 32.75%   51.1    4.3    2.6  100.0   46.2    0.8   24.4
+R=  3600s  mean floor+R= 32.92%  mean detector+R= 48.52%  100.0   29.8   29.7  100.0   48.5    4.9   26.8
+R= 14400s  mean floor+R= 62.85%  mean detector+R= 72.72%  100.0  100.0  100.0  100.0   56.0   18.3   34.7
+{'episode_id': '10.1.3.17->10.8.10.84:443@1624784014.250', 'duration_s': 79783.3, 'latency_s': 270.0, 'latency_frac_D': 0.003384, 'nebd': 0.003748, 'fired': True}
+{'episode_id': '10.1.3.17->10.8.10.84:443@1624665799.794', 'duration_s': 77317.9, 'latency_s': 25.3, 'latency_frac_D': 0.000327, 'nebd': 0.004186, 'fired': True}
+{'episode_id': '10.1.3.17->10.1.5.21:3306@1625185759.453', 'duration_s': 12964.7, 'latency_s': 58.1, 'latency_frac_D': 0.004482, 'nebd': 0.010348, 'fired': True}
+{'episode_id': '10.1.3.17->10.8.10.84:443@1625264949.712', 'duration_s': 1377.7, 'latency_s': 157.1, 'latency_frac_D': 0.113999, 'nebd': 0.012695, 'fired': True}
+{'episode_id': '10.1.3.17->10.1.5.21:3306@1625199408.918', 'duration_s': 12927.3, 'latency_s': 253.5, 'latency_frac_D': 0.019613, 'nebd': 0.019872, 'fired': True}
+{'episode_id': '10.1.3.17->10.8.10.84:443@1624863977.550', 'duration_s': 134527.7, 'latency_s': 32645.5, 'latency_frac_D': 0.242667, 'nebd': 0.241402, 'fired': True}
+{'episode_id': '10.1.3.8->10.8.10.84:443@1624318576.594', 'duration_s': 26504.2, 'latency_s': '', 'latency_frac_D': '', 'nebd': 1.0, 'fired': False}
+fired episodes 6; tau(latency s, nEBD) = +0.467 (11 concordant, 4 discordant pairs)
+tau(latency/D, nEBD) = +0.733 (13 concordant, 2 discordant pairs)
+{'episode_id': '10.1.3.17->10.8.10.84:443@1624784014.250', 'duration_s': 79783.3, 'latency_s': 30.0, 'latency_frac_D': 0.000375, 'nebd': 0.00075, 'fired': True}
+{'episode_id': '10.1.3.17->10.8.10.84:443@1624863977.550', 'duration_s': 134527.7, 'latency_s': 60.1, 'latency_frac_D': 0.000447, 'nebd': 0.000884, 'fired': True}
+{'episode_id': '10.1.3.17->10.8.10.84:443@1625264949.712', 'duration_s': 1377.7, 'latency_s': 75.0, 'latency_frac_D': 0.054423, 'nebd': 0.002785, 'fired': True}
+{'episode_id': '10.1.3.17->10.1.5.21:3306@1625185759.453', 'duration_s': 12964.7, 'latency_s': 58.1, 'latency_frac_D': 0.004482, 'nebd': 0.010348, 'fired': True}
+{'episode_id': '10.1.3.17->10.1.5.21:3306@1625199408.918', 'duration_s': 12927.3, 'latency_s': 253.5, 'latency_frac_D': 0.019613, 'nebd': 0.019872, 'fired': True}
+{'episode_id': '10.1.3.17->10.8.10.84:443@1624665799.794', 'duration_s': 77317.9, 'latency_s': 85.4, 'latency_frac_D': 0.001104, 'nebd': 0.460068, 'fired': True}
+{'episode_id': '10.1.3.8->10.8.10.84:443@1624318576.594', 'duration_s': 26504.2, 'latency_s': '', 'latency_frac_D': '', 'nebd': 1.0, 'fired': False}
+fired episodes 6; tau(latency s, nEBD) = +0.600 (12 concordant, 3 discordant pairs)
+tau(latency/D, nEBD) = +0.333 (10 concordant, 5 discordant pairs)
+train rows 94879 (exfil 1834); held-out benign keys 3334; training benign keys 3334
+peer_rule   [all] thr 0.5 FPB 0.03% unitAUC 1.000 [0.99,1.00] flowAUC 1.000 fired 7/7 at-floor 7/7 mean nEBD 0.76% median 0.42%
+wrote results/real_peer_rule.csv
+wrote results/real_peer_rule_episodes.csv
+single strict/all          full       n= 1 at-floor(1pp) [5] (0pp median 3) FPB 0.45%-0.45% admissible 1/1
+single strict/all          no_ports   n= 1 at-floor(1pp) [2] (0pp median 2) FPB 0.42%-0.42% admissible 1/1
+single strict/all          peer_rule  n= 1 at-floor(1pp) [7] (0pp median 7) FPB 0.03%-0.03% admissible 1/1
+single strict/all          ports_only n= 1 at-floor(1pp) [2] (0pp median 2) FPB 0.00%-0.00% admissible 1/1
+variance strict/all        full       n=10 at-floor(1pp) [3, 3, 4, 4, 4, 4, 4, 5, 5, 5] (0pp median 3.0) FPB 0.09%-1.05% admissible 9/10
+variance strict/all        no_ports   n=10 at-floor(1pp) [2, 2, 2, 2, 3, 3, 3, 4, 5, 6] (0pp median 2.0) FPB 0.09%-0.87% admissible 10/10
+single loo/all             full       n= 1 at-floor(1pp) [5] (0pp median 4) FPB 0.45%-0.45% admissible 1/1
+single loo/all             no_ports   n= 1 at-floor(1pp) [6] (0pp median 4) FPB 0.42%-0.42% admissible 1/1
+single loo/all             peer_rule  n= 1 at-floor(1pp) [7] (0pp median 7) FPB 0.03%-0.03% admissible 1/1
+single loo/all             ports_only n= 1 at-floor(1pp) [5] (0pp median 4) FPB 0.00%-0.00% admissible 1/1
+variance loo/all           full       n=10 at-floor(1pp) [5, 5, 5, 5, 5, 5, 6, 6, 6, 7] (0pp median 4.0) FPB 0.09%-1.05% admissible 9/10
+variance loo/all           no_ports   n=10 at-floor(1pp) [5, 5, 5, 5, 5, 5, 5, 5, 5, 6] (0pp median 3.0) FPB 0.09%-0.87% admissible 10/10
+peer-disjoint all          no_ports   n= 2 at-floor(1pp) [0, 0] (0pp median 0.0) FPB 0.00%-0.33% admissible 2/2
+single strict/benign       full       n= 1 at-floor(1pp) [4] (0pp median 2) FPB 1.05%-1.05% admissible 0/1
+single strict/benign       no_ports   n= 1 at-floor(1pp) [6] (0pp median 4) FPB 0.27%-0.27% admissible 1/1
+single strict/benign       peer_rule  n= 1 at-floor(1pp) [7] (0pp median 7) FPB 0.03%-0.03% admissible 1/1
+single strict/benign       ports_only n= 1 at-floor(1pp) [2] (0pp median 2) FPB 0.00%-0.00% admissible 1/1
+variance strict/benign     full       n=10 at-floor(1pp) [2, 3, 3, 3, 4, 4, 4, 5, 5, 5] (0pp median 3.0) FPB 0.09%-0.78% admissible 10/10
+variance strict/benign     no_ports   n=10 at-floor(1pp) [5, 5, 5, 5, 6, 6, 6, 6, 6, 7] (0pp median 3.5) FPB 0.33%-1.11% admissible 8/10
+single loo/benign          full       n= 1 at-floor(1pp) [6] (0pp median 4) FPB 1.05%-1.05% admissible 0/1
+single loo/benign          no_ports   n= 1 at-floor(1pp) [5] (0pp median 3) FPB 0.27%-0.27% admissible 1/1
+single loo/benign          peer_rule  n= 1 at-floor(1pp) [7] (0pp median 7) FPB 0.03%-0.03% admissible 1/1
+single loo/benign          ports_only n= 1 at-floor(1pp) [4] (0pp median 3) FPB 0.00%-0.00% admissible 1/1
+variance loo/benign        full       n=10 at-floor(1pp) [5, 5, 5, 5, 6, 6, 6, 6, 6, 6] (0pp median 4.5) FPB 0.09%-0.78% admissible 10/10
+variance loo/benign        no_ports   n=10 at-floor(1pp) [5, 5, 5, 5, 5, 5, 5, 5, 5, 5] (0pp median 3.5) FPB 0.33%-1.11% admissible 8/10
+peer-disjoint benign       no_ports   n= 2 at-floor(1pp) [0, 0] (0pp median 0.0) FPB 0.00%-0.30% admissible 2/2
+done: send back results/round5/ and the refreshed results/real_multimodel_* files

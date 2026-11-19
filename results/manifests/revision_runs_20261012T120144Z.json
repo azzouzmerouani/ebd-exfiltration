@@ -1,0 +1,121 @@
+{
+ "started_utc": "2026-10-12T12:01:44Z",
+ "platform": "macOS-26.3.1-x86_64-i386-64bit",
+ "machine": "x86_64",
+ "python": "3.12.12",
+ "versions": {
+  "numpy": "2.5.1",
+  "pandas": "3.0.5",
+  "sklearn": "1.9.0",
+  "xgboost": "3.4.1",
+  "scipy": "1.18.0",
+  "matplotlib": "3.11.1",
+  "nfstream": "unavailable (ImportError)",
+  "dpkt": "1.9.8"
+ },
+ "git_commit": "73f779ed930d4ff41bcc1dccb8dccd6f82b80ce7",
+ "git_dirty": true,
+ "parts": [
+  {
+   "name": "fast-wilson",
+   "module": "ebd.experiments.fast_regime",
+   "argv": [
+    "--rule",
+    "wilson",
+    "--skip-escape",
+    "--out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/fast_regime_wilson.csv",
+    "--meta-out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/fast_regime_wilson_meta.json",
+    "--figure",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/figures/fast_regime_wilson.png"
+   ],
+   "status": "ok",
+   "seconds": 10.7,
+   "outputs": {
+    "results/fast_regime_wilson.csv": "9e2592c3f067ce048b75d35f7e01f6d3cbff2cab547edfc8feefbe9b16ef2b79",
+    "results/fast_regime_wilson_meta.json": "e1d5f93e6579daf164bebd8f4e204bbb174a07e4920510415a348ba567c4015e",
+    "figures/fast_regime_wilson.png": "25309496984ac9ff8ff25529ea56081c955fd9dcd110a608d64d7efcc2b6d266"
+   },
+   "error": ""
+  },
+  {
+   "name": "fast-point",
+   "module": "ebd.experiments.fast_regime",
+   "argv": [
+    "--rule",
+    "point",
+    "--skip-escape",
+    "--out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/fast_regime_point_check.csv",
+    "--meta-out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/fast_regime_point_meta.json",
+    "--figure",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/figures/fast_regime_point_check.png"
+   ],
+   "status": "ok",
+   "seconds": 9.9,
+   "outputs": {
+    "results/fast_regime_point_check.csv": "817be9ba893254b1f106a7d449a45d6cb2636fd4c80bfbb148649f0105a1fe82",
+    "results/fast_regime_point_meta.json": "6c497d353d77c170966bee00fa6220333de14c8e477ab20c5071d0740e333c2c"
+   },
+   "error": ""
+  },
+  {
+   "name": "fast-netem",
+   "module": "ebd.experiments.fast_regime",
+   "argv": [
+    "--testbed",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed_netem",
+    "--rule",
+    "wilson",
+    "--skip-escape",
+    "--exclude-unreconciled",
+    "--out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/fast_regime_netem.csv",
+    "--meta-out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/fast_regime_netem_meta.json",
+    "--figure",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/figures/fast_regime_netem.png"
+   ],
+   "status": "ok",
+   "seconds": 29.9,
+   "outputs": {
+    "results/fast_regime_netem.csv": "ffc14dd1e267101bb73b3194d703a33606791f3859865c7c6bf9f2ef762aedf5",
+    "results/fast_regime_netem_meta.json": "18c53bf7ce8d50dd39b207e792dfdf652e885d09a9ee2eb15e3208e6a41cd9f1",
+    "figures/fast_regime_netem.png": "12cd6c283957ba31c422dfba896da50ae8206ffa496bf040a5c3df02f23b8f5b"
+   },
+   "error": ""
+  },
+  {
+   "name": "escape",
+   "module": "ebd.experiments.escape",
+   "argv": [
+    "--rule",
+    "wilson",
+    "--out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/escape_wilson.csv",
+    "--sweep-out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/escape_sweep.csv",
+    "--figure",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/figures/escape_wilson.png"
+   ],
+   "status": "ok",
+   "seconds": 29.7,
+   "outputs": {
+    "results/escape_wilson.csv": "e6df3ae5ffa471b0cd19aeded675d8fba7c9e00d6982b65d1d66a533679a9284",
+    "results/escape_sweep.csv": "b1d022b8b78586a3241325f339aef78e84c9a6f6da980e536aff49e2b2f4cf4e",
+    "figures/escape_wilson.png": "ee2c30b777d47f72bb340f11df8555a7bfd0bb79958c67a99b5fe10006d9e272"
+   },
+   "error": ""
+  }
+ ],
+ "run_id": "20261012T120144Z",
+ "only": [
+  "fast-wilson",
+  "fast-point",
+  "fast-netem",
+  "escape"
+ ],
+ "finished_utc": "2026-10-12T12:03:07Z"
+}

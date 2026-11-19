@@ -1,0 +1,9 @@
+server.host: "127.0.0.1"
+server.port: 5601
+elasticsearch.hosts: ["http://127.0.0.1:9200"]
+elasticsearch.username: "kibana_system"
+telemetry.optIn: false
+telemetry.enabled: false
+newsfeed.enabled: false
+xpack.fleet.agents.enabled: false
+logging.root.level: warn

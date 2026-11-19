@@ -1,0 +1,11 @@
+metric,value,denominator
+papers_coded,39,39
+record_consumers,28,39
+unit_flow_record,25,39
+unit_packet,9,39
+unit_session_aggregate,2,39
+unit_payload_dpi,2,39
+unit_host_timeseries,1,39
+cadence_yes,2,28
+cadence_partial,2,28
+cadence_no,24,28

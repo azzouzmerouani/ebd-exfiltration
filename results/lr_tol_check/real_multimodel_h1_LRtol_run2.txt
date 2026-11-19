@@ -1,0 +1,5 @@
+detector            F1-rank   EBD-rank
+-------------------------------------
+Logistic Regression       1         1
+-------------------------------------
+Kendall tau = +0.000  p = 1.000  -> tau below 0.5: divergent by the H1 criterion

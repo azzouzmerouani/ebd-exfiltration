@@ -1,0 +1,5 @@
+scope,channel,n,first_rc,first_lo,first_hi,second_determined,second_rc,second_lo,second_hi
+exfiltration,dns,11,2,0.0514,0.477,9,2,0.0632,0.5474
+exfiltration,other,10,8,0.4902,0.9433,8,6,0.4093,0.9285
+exfiltration,any,21,10,0.2834,0.6763,17,8,0.2617,0.6904
+general_nids,other,17,17,0.8157,1.0,17,17,0.8157,1.0

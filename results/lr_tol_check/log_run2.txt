@@ -1,0 +1,26 @@
+flow rows: 181345   reconstructed episodes: 7
+held-out episodes present in both: 7
+benign: 147829 flows in 6668 sessions -> held out 80778 in 3334 sessions
+train rows 94879 (exfil 1834, other 93045)
+
+=== Logistic Regression ===
+lbfgs iterations at tol 1e-10: 254
+lbfgs iterations at default tol 1e-4: 61
+  F1=0.139 (thr=0.85, P=0.08, R=0.71)   EBD=58.10%  mean bytes lost=1.154 MB  detect_rate=43%  FPB(heldout)=1.11% [0.81%, 1.53%]  (EBD thr 0.95; train 1.32%, upper 1.77%, rule wilson)
+
+detector            F1-rank   EBD-rank
+-------------------------------------
+Logistic Regression       1         1
+-------------------------------------
+Kendall tau = +0.000  p = 1.000  -> tau below 0.5: divergent by the H1 criterion
+
+leave-one-episode-out tau sensitivity:
+  exclude 10.1.3.8->10.8.10.84:443@16243   tau=+0.000  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.000  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.000  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.000  diverges=True
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+0.000  diverges=True
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+0.000  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1625   tau=+0.000  diverges=True
+
+wrote results/real_multimodel_{summary,per_episode,maxscores,sensitivity,sweep}_LRtol_run2.csv, results/real_multimodel_h1_LRtol_run2.txt

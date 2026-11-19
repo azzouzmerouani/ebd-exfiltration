@@ -1,0 +1,2 @@
+variant,group,kind,negatives,exfil_bootstrap,protocol,n_features,permuted,split_seed,calibration,grid,threshold,grid_bottom_binds,admissible,rule_met_in_training,train_upper,heldout_fpb,heldout_lo,heldout_hi,heldout_keys,heldout_flagged_flows,heldout_benign_flows,unit_auc,unit_auc_lo,unit_auc_hi,flow_auc,fired,episodes,at_floor,at_floor_0pp,at_floor_2pp,mean_ebd_pct,median_ebd_pct
+peer_rule,all,peer_rule,all,0,strict,0,False,20260815,in_sample,rule,0.5,False,True,True,0.001151,0.0003,5.3e-05,0.001697,3334,14,80778,0.9999,0.9934,1.0,0.9999,7,7,7,7,7,0.7629,0.4186

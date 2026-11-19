@@ -1,0 +1,172 @@
+{
+ "testbed": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed",
+ "rule": "wilson",
+ "budget": 0.01,
+ "conditions": "",
+ "excluded_labels": [],
+ "reconciliation_worst": 0.0,
+ "per_timeout": {
+  "5": {
+   "threshold": 0.6,
+   "admissible": true,
+   "train_sessions": 600,
+   "train_fpb": 0.0016666666666666668,
+   "train_upper": 0.009379560476138811,
+   "heldout_sessions": 600,
+   "heldout_alerts": 2,
+   "heldout_fpb": 0.0033333333333333335,
+   "heldout_lo": 0.0009145966868046472,
+   "heldout_hi": 0.012071359653471395,
+   "heldout_auc_session": 0.8032539682539682,
+   "heldout_auc_record": 0.8832181472295133
+  },
+  "15": {
+   "threshold": 0.55,
+   "admissible": true,
+   "train_sessions": 598,
+   "train_fpb": 0.0016722408026755853,
+   "train_upper": 0.00941072353005366,
+   "heldout_sessions": 598,
+   "heldout_alerts": 1,
+   "heldout_fpb": 0.0016722408026755853,
+   "heldout_lo": 0.00029525257890440203,
+   "heldout_hi": 0.00941072353005366,
+   "heldout_auc_session": 0.8861283643892339,
+   "heldout_auc_record": 0.8738739613263958
+  },
+  "60": {
+   "threshold": 0.65,
+   "admissible": true,
+   "train_sessions": 598,
+   "train_fpb": 0.0,
+   "train_upper": 0.006382841800598862,
+   "heldout_sessions": 595,
+   "heldout_alerts": 0,
+   "heldout_fpb": 0.0,
+   "heldout_lo": 4.336808689942018e-19,
+   "heldout_hi": 0.006414817752029322,
+   "heldout_auc_session": 0.853781512605042,
+   "heldout_auc_record": 0.7684048333468494
+  }
+ },
+ "timeline_bin_seconds": 0.01,
+ "unreconciled_excluded": [],
+ "export_sources": [
+  {
+   "pcap": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/capture.pcap",
+   "active_timeout": 5.0,
+   "idle_timeout": 5.0,
+   "source": "cache",
+   "cache": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/exports/nfstream_a5_i5.jsonl.gz",
+   "records": 1623,
+   "nfstream": "6.5.4",
+   "python": "3.8.20",
+   "platform": "macOS-26.3.1-x86_64-i386-64bit",
+   "created_utc": "2026-10-12T12:01:32Z",
+   "pcap_sha256": "47dfa6e7cdf6e7969444fa2349cce7ef23459a4617c0d55be52729343a85bdd6"
+  },
+  {
+   "pcap": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/capture.pcap",
+   "active_timeout": 15.0,
+   "idle_timeout": 15.0,
+   "source": "cache",
+   "cache": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/exports/nfstream_a15_i15.jsonl.gz",
+   "records": 1457,
+   "nfstream": "6.5.4",
+   "python": "3.8.20",
+   "platform": "macOS-26.3.1-x86_64-i386-64bit",
+   "created_utc": "2026-10-12T12:01:33Z",
+   "pcap_sha256": "47dfa6e7cdf6e7969444fa2349cce7ef23459a4617c0d55be52729343a85bdd6"
+  },
+  {
+   "pcap": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/capture.pcap",
+   "active_timeout": 60.0,
+   "idle_timeout": 60.0,
+   "source": "cache",
+   "cache": "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed/exports/nfstream_a60_i60.jsonl.gz",
+   "records": 1390,
+   "nfstream": "6.5.4",
+   "python": "3.8.20",
+   "platform": "macOS-26.3.1-x86_64-i386-64bit",
+   "created_utc": "2026-10-12T12:01:33Z",
+   "pcap_sha256": "47dfa6e7cdf6e7969444fa2349cce7ef23459a4617c0d55be52729343a85bdd6"
+  }
+ ],
+ "asset_invariance": {
+  "pairs": [
+   {
+    "active_timeout_s": 5.0,
+    "planned_duration_s": 32.0,
+    "floor_20M": 0.156248,
+    "floor_2M": 0.156641,
+    "abs_diff_pp": 0.039300000000000446
+   },
+   {
+    "active_timeout_s": 5.0,
+    "planned_duration_s": 256.0,
+    "floor_20M": 0.019531,
+    "floor_2M": 0.020189,
+    "abs_diff_pp": 0.06579999999999989
+   },
+   {
+    "active_timeout_s": 5.0,
+    "planned_duration_s": 4.0,
+    "floor_20M": 1.0,
+    "floor_2M": 1.0,
+    "abs_diff_pp": 0.0
+   },
+   {
+    "active_timeout_s": 15.0,
+    "planned_duration_s": 32.0,
+    "floor_20M": 0.468743,
+    "floor_2M": 0.469227,
+    "abs_diff_pp": 0.048399999999998444
+   },
+   {
+    "active_timeout_s": 15.0,
+    "planned_duration_s": 256.0,
+    "floor_20M": 0.058594,
+    "floor_2M": 0.059175,
+    "abs_diff_pp": 0.05809999999999982
+   },
+   {
+    "active_timeout_s": 15.0,
+    "planned_duration_s": 4.0,
+    "floor_20M": 1.0,
+    "floor_2M": 1.0,
+    "abs_diff_pp": 0.0
+   },
+   {
+    "active_timeout_s": 60.0,
+    "planned_duration_s": 32.0,
+    "floor_20M": 1.0,
+    "floor_2M": 1.0,
+    "abs_diff_pp": 0.0
+   },
+   {
+    "active_timeout_s": 60.0,
+    "planned_duration_s": 256.0,
+    "floor_20M": 0.234375,
+    "floor_2M": 0.234613,
+    "abs_diff_pp": 0.023799999999998822
+   },
+   {
+    "active_timeout_s": 60.0,
+    "planned_duration_s": 4.0,
+    "floor_20M": 1.0,
+    "floor_2M": 1.0,
+    "abs_diff_pp": 0.0
+   }
+  ],
+  "n_pairs": 9,
+  "max_abs_diff_pp": 0.06579999999999989,
+  "exact_agreement": 4
+ },
+ "single_connection_cells": 36,
+ "closed_form_check": {
+  "n": 36,
+  "violations": 0,
+  "mean_excess_pp": 0.20599562217758166,
+  "max_excess_pp": 2.4985361445783227
+ }
+}

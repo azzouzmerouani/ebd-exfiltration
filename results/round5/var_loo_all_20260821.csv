@@ -1,0 +1,3 @@
+variant,group,kind,negatives,exfil_bootstrap,protocol,n_features,permuted,split_seed,calibration,grid,threshold,grid_bottom_binds,admissible,rule_met_in_training,train_upper,heldout_fpb,heldout_lo,heldout_hi,heldout_keys,heldout_flagged_flows,heldout_benign_flows,unit_auc,unit_auc_lo,unit_auc_hi,flow_auc,fired,episodes,at_floor,at_floor_0pp,at_floor_2pp,mean_ebd_pct,median_ebd_pct
+full,all,xgb,all,1,loo,64,False,20260821,in_sample,quantile,0.37439588,False,True,True,0.002642,0.0009,0.000306,0.002642,3334,731,81857,0.9998,0.9921,1.0,0.9966,7,7,7,7,7,0.7629,0.4186
+no_ports,all,xgb,all,1,loo,61,False,20260821,in_sample,quantile,0.38753596,False,True,True,0.005899,0.005999,0.003887,0.009248,3334,70,81857,0.9982,0.9757,1.0,0.9772,6,7,5,3,5,21.3636,1.0348

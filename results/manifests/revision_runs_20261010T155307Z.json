@@ -1,0 +1,129 @@
+{
+ "started_utc": "2026-10-10T15:53:07Z",
+ "platform": "macOS-26.3.1-x86_64-i386-64bit",
+ "machine": "x86_64",
+ "python": "3.12.12",
+ "versions": {
+  "numpy": "2.5.1",
+  "pandas": "3.0.5",
+  "sklearn": "1.9.0",
+  "xgboost": "3.4.1",
+  "scipy": "1.18.0",
+  "matplotlib": "3.11.1",
+  "nfstream": "unavailable (ImportError)",
+  "dpkt": "1.9.8"
+ },
+ "git_commit": "d2d09f49d4cc6b1f44105fe5982896cc0d5979d2",
+ "git_dirty": true,
+ "parts": [
+  {
+   "name": "multimodel",
+   "module": "ebd.experiments.real_multimodel",
+   "argv": [
+    "--train",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/realdata/train_flows.csv",
+    "--groundtruth",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/realdata/groundtruth.jsonl",
+    "--rule",
+    "wilson"
+   ],
+   "status": "ok",
+   "seconds": 187.8,
+   "outputs": {
+    "results/real_multimodel_summary_wilson.csv": "bb1eca45105809a29bab6d3b30df89c9984993c0b00d267f3f0c3f4d0a71b2e5",
+    "results/real_multimodel_per_episode_wilson.csv": "700f23a1efddf57731f47e7d73181c421919827214d4cfef88a1d99f992a85bb",
+    "results/real_multimodel_maxscores_wilson.csv": "c84699d6b6b8446af17cba816642cbbdce99779ebd4a24d2d3cea1936a5346b0",
+    "results/real_multimodel_sensitivity_wilson.csv": "a3ed1e2804b724645628e0f87525d226a8b9c5c519381adfb3fdd68f3081cce8",
+    "results/real_multimodel_sweep_wilson.csv": "789ff224c600f1f7c6374bbf7258b3479c61ce4df2f4770b41e2f461cf82b4d9",
+    "results/real_multimodel_h1_wilson.txt": "48d1ace2dae5a69b893d408ec972b07ce42cbf1c7ad7ad8a79aa5c1b54964735"
+   },
+   "error": ""
+  },
+  {
+   "name": "fast-wilson",
+   "module": "ebd.experiments.fast_regime",
+   "argv": [
+    "--rule",
+    "wilson",
+    "--skip-escape",
+    "--out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/fast_regime_wilson.csv",
+    "--meta-out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/fast_regime_wilson_meta.json",
+    "--figure",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/figures/fast_regime_wilson.png"
+   ],
+   "status": "failed",
+   "seconds": 5.9,
+   "outputs": {},
+   "error": "Traceback (most recent call last):\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/src/ebd/experiments/revision_runs.py\", line 216, in main\n    rc = import_module(module).main(argv_part)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/src/ebd/experiments/fast_regime.py\", line 141, in main\n    recs = export(pcap, ta)\n           ^^^^^^^^^^^^^^^^\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/src/ebd/testbed/export.py\", line 64, in export\n    from nfstream import NFStreamer\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/__init__.py\", line 17, in <module>\n    from .streamer import NFStreamer\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/streamer.py\", line 25, in <module>\n    from .meter import meter_workflow\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/meter.py\", line 16, in <module>\n    from .engine import create_engine, setup_capture, setup_dissector, activate_capture\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/engine/__init__.py\", line 16, in <module>\n    from .engine import create_engine, setup_capture, setup_dissector, activate_capture\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/engine/engine.py\", line 16, in <module>\n    from _lib_engine import ffi, lib\nImportError: dlopen(/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/_lib_engine.abi3.so, 0x0002): symbol not found in flat namespace '_ndpi_category_get_name'\n"
+  },
+  {
+   "name": "fast-point",
+   "module": "ebd.experiments.fast_regime",
+   "argv": [
+    "--rule",
+    "point",
+    "--skip-escape",
+    "--out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/fast_regime_point_check.csv",
+    "--meta-out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/fast_regime_point_meta.json",
+    "--figure",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/figures/fast_regime_point_check.png"
+   ],
+   "status": "failed",
+   "seconds": 5.9,
+   "outputs": {},
+   "error": "Traceback (most recent call last):\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/src/ebd/experiments/revision_runs.py\", line 216, in main\n    rc = import_module(module).main(argv_part)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/src/ebd/experiments/fast_regime.py\", line 141, in main\n    recs = export(pcap, ta)\n           ^^^^^^^^^^^^^^^^\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/src/ebd/testbed/export.py\", line 64, in export\n    from nfstream import NFStreamer\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/__init__.py\", line 17, in <module>\n    from .streamer import NFStreamer\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/streamer.py\", line 25, in <module>\n    from .meter import meter_workflow\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/meter.py\", line 16, in <module>\n    from .engine import create_engine, setup_capture, setup_dissector, activate_capture\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/engine/__init__.py\", line 16, in <module>\n    from .engine import create_engine, setup_capture, setup_dissector, activate_capture\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/engine/engine.py\", line 16, in <module>\n    from _lib_engine import ffi, lib\nImportError: dlopen(/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/_lib_engine.abi3.so, 0x0002): symbol not found in flat namespace '_ndpi_category_get_name'\n"
+  },
+  {
+   "name": "fast-netem",
+   "module": "ebd.experiments.fast_regime",
+   "argv": [
+    "--testbed",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/data/testbed_netem",
+    "--rule",
+    "wilson",
+    "--skip-escape",
+    "--out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/fast_regime_netem.csv",
+    "--meta-out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/fast_regime_netem_meta.json",
+    "--figure",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/figures/fast_regime_netem.png"
+   ],
+   "status": "failed",
+   "seconds": 11.5,
+   "outputs": {},
+   "error": "Traceback (most recent call last):\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/src/ebd/experiments/revision_runs.py\", line 216, in main\n    rc = import_module(module).main(argv_part)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/src/ebd/experiments/fast_regime.py\", line 124, in main\n    assert recon < 0.01, (\n           ^^^^^^^^^^^^\nAssertionError: attack_d4_k1_a20M: reconstructed 20576663 vs planned 20971520 (1.88%) -- ground truth is not trustworthy\n"
+  },
+  {
+   "name": "escape",
+   "module": "ebd.experiments.escape",
+   "argv": [
+    "--rule",
+    "wilson",
+    "--out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/escape_wilson.csv",
+    "--sweep-out",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/results/escape_sweep.csv",
+    "--figure",
+    "/Users/snow/Desktop/PhD/EBD/exfil-ebd/figures/escape_wilson.png"
+   ],
+   "status": "failed",
+   "seconds": 7.6,
+   "outputs": {},
+   "error": "Traceback (most recent call last):\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/src/ebd/experiments/revision_runs.py\", line 216, in main\n    rc = import_module(module).main(argv_part)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/src/ebd/experiments/escape.py\", line 93, in main\n    recs = export(pcap, ta)\n           ^^^^^^^^^^^^^^^^\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/src/ebd/testbed/export.py\", line 64, in export\n    from nfstream import NFStreamer\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/__init__.py\", line 17, in <module>\n    from .streamer import NFStreamer\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/streamer.py\", line 25, in <module>\n    from .meter import meter_workflow\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/meter.py\", line 16, in <module>\n    from .engine import create_engine, setup_capture, setup_dissector, activate_capture\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/engine/__init__.py\", line 16, in <module>\n    from .engine import create_engine, setup_capture, setup_dissector, activate_capture\n  File \"/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/nfstream/engine/engine.py\", line 16, in <module>\n    from _lib_engine import ffi, lib\nImportError: dlopen(/Users/snow/Desktop/PhD/EBD/exfil-ebd/.venv/lib/python3.12/site-packages/_lib_engine.abi3.so, 0x0002): symbol not found in flat namespace '_ndpi_category_get_name'\n"
+  }
+ ],
+ "run_id": "20261010T155307Z",
+ "only": [
+  "multimodel",
+  "fast-wilson",
+  "fast-point",
+  "fast-netem",
+  "escape"
+ ],
+ "finished_utc": "2026-10-10T15:56:48Z"
+}

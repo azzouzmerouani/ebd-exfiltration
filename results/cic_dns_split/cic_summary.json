@@ -1,0 +1,133 @@
+{
+ "captures": 12,
+ "episodes": 28,
+ "per-query": {
+  "n": 28,
+  "mean": 0.0006350950778992551,
+  "median": 0.00025438068600054274,
+  "boot": [
+   0.00032899869169603237,
+   0.0010159951435323006
+  ],
+  "total_loss": 0,
+  "total_loss_wilson": [
+   0.0,
+   0.12064330481563733
+  ],
+  "total_loss_exact": [
+   0.0,
+   0.12343611850026329
+  ],
+  "family_mean": 0.0004356025600855958,
+  "family_boot": [
+   0.00011128051516013495,
+   0.0008469652073449055
+  ],
+  "n_families": 12,
+  "families_total_loss": 0
+ },
+ "flow": {
+  "n": 28,
+  "mean": 0.0752804925758414,
+  "median": 0.031960069263106086,
+  "boot": [
+   0.04149652631361789,
+   0.11398021040759877
+  ],
+  "total_loss": 0,
+  "total_loss_wilson": [
+   0.0,
+   0.12064330481563733
+  ],
+  "total_loss_exact": [
+   0.0,
+   0.12343611850026329
+  ],
+  "family_mean": 0.05209043118063061,
+  "family_boot": [
+   0.013547584565740524,
+   0.0995948705424779
+  ],
+  "n_families": 12,
+  "families_total_loss": 0
+ },
+ "session": {
+  "n": 28,
+  "mean": 1.0,
+  "median": 1.0,
+  "boot": [
+   1.0,
+   1.0
+  ],
+  "total_loss": 28,
+  "total_loss_wilson": [
+   0.8793566951843627,
+   0.9999999999999999
+  ],
+  "total_loss_exact": [
+   0.8765638814997367,
+   1.0
+  ],
+  "family_mean": 1.0,
+  "family_boot": [
+   1.0,
+   1.0
+  ],
+  "n_families": 12,
+  "families_total_loss": 12
+ },
+ "flow_by_variant": {
+  "heavy": {
+   "n": 6,
+   "mean": 0.0008328163043170179,
+   "median_duration_s": 19945.911108493805,
+   "total_loss": 0
+  },
+  "light": {
+   "n": 22,
+   "mean": 0.09558440428625715,
+   "median_duration_s": 312.26400208473206,
+   "total_loss": 0
+  }
+ },
+ "flow_excess_over_closed_form_pp": {
+  "mean": 0.23165230919098073,
+  "min": 0.00022074345331775077,
+  "max": 1.1383099968677812
+ },
+ "ports_per_episode_median": 926.5,
+ "sweep_mean": {
+  "flow active timeout@120": 0.0752804925758414,
+  "flow active timeout@1800": 0.0752804925758414,
+  "flow active timeout@30": 0.0752804925758414,
+  "flow active timeout@300": 0.0752804925758414,
+  "flow active timeout@60": 0.0752804925758414,
+  "flow active timeout@600": 0.0752804925758414,
+  "flow idle timeout@120": 0.39097707425377615,
+  "flow idle timeout@15": 0.0752804925758414,
+  "flow idle timeout@30": 0.1475356977056929,
+  "flow idle timeout@5": 0.02544991766469833,
+  "flow idle timeout@60": 0.27515597429070154,
+  "session window@1800": 1.0,
+  "session window@300": 1.0,
+  "session window@60": 1.0,
+  "session window@600": 1.0
+ },
+ "sweep_total_loss": {
+  "flow active timeout@120": 0,
+  "flow active timeout@1800": 0,
+  "flow active timeout@30": 0,
+  "flow active timeout@300": 0,
+  "flow active timeout@60": 0,
+  "flow active timeout@600": 0,
+  "flow idle timeout@120": 6,
+  "flow idle timeout@15": 0,
+  "flow idle timeout@30": 0,
+  "flow idle timeout@5": 0,
+  "flow idle timeout@60": 3,
+  "session window@1800": 28,
+  "session window@300": 28,
+  "session window@60": 28,
+  "session window@600": 28
+ }
+}

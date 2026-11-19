@@ -1,0 +1,198 @@
+== 1. Four-family table, twice, hashed ==
+flow rows: 181345   reconstructed episodes: 7
+held-out episodes present in both: 7
+benign: 147829 flows in 6668 sessions -> held out 80778 in 3334 sessions
+train rows 94879 (exfil 1834, other 93045)
+
+=== EDXGB (reproduced) ===
+  F1=0.480 (thr=0.45, P=0.33, R=0.86)   EBD=18.46%  mean bytes lost=0.142 MB  detect_rate=86%  FPB(heldout)=0.45% [0.27%, 0.74%]  (EBD thr 0.40; train 0.15%, upper 0.35%, rule wilson)
+=== XGBoost (default) ===
+  F1=0.800 (thr=0.20, P=0.75, R=0.86)   EBD=27.52%  mean bytes lost=0.332 MB  detect_rate=86%  FPB(heldout)=0.15% [0.06%, 0.35%]  (EBD thr 0.05; train 0.00%, upper 0.12%, rule wilson)
+=== Random Forest ===
+  F1=0.625 (thr=0.30, P=0.56, R=0.71)   EBD=9.00%  mean bytes lost=0.167 MB  detect_rate=100%  FPB(heldout)=1.20% [0.88%, 1.63%]  (EBD thr 0.05; train 0.57%, upper 0.89%, rule wilson)
+=== Logistic Regression ===
+  F1=0.139 (thr=0.85, P=0.08, R=0.71)   EBD=58.10%  mean bytes lost=1.154 MB  detect_rate=43%  FPB(heldout)=1.11% [0.81%, 1.53%]  (EBD thr 0.95; train 1.32%, upper 1.77%, rule wilson)
+
+detector            F1-rank   EBD-rank
+-------------------------------------
+EDXGB (reproduced)       3         2
+Logistic Regression       4         4
+Random Forest            2         1
+XGBoost (default)        1         3
+-------------------------------------
+Kendall tau = +0.333  p = 0.750  -> tau below 0.5: divergent by the H1 criterion
+
+leave-one-episode-out tau sensitivity:
+  exclude 10.1.3.8->10.8.10.84:443@16243   tau=+0.000  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1625   tau=+0.333  diverges=True
+
+wrote results/real_multimodel_{summary,per_episode,maxscores,sensitivity,sweep}_wilson_r7.csv, results/real_multimodel_h1_wilson_r7.txt
+flow rows: 181345   reconstructed episodes: 7
+held-out episodes present in both: 7
+benign: 147829 flows in 6668 sessions -> held out 80778 in 3334 sessions
+train rows 94879 (exfil 1834, other 93045)
+
+=== EDXGB (reproduced) ===
+  F1=0.480 (thr=0.45, P=0.33, R=0.86)   EBD=18.46%  mean bytes lost=0.142 MB  detect_rate=86%  FPB(heldout)=0.45% [0.27%, 0.74%]  (EBD thr 0.40; train 0.15%, upper 0.35%, rule wilson)
+=== XGBoost (default) ===
+  F1=0.800 (thr=0.20, P=0.75, R=0.86)   EBD=27.52%  mean bytes lost=0.332 MB  detect_rate=86%  FPB(heldout)=0.15% [0.06%, 0.35%]  (EBD thr 0.05; train 0.00%, upper 0.12%, rule wilson)
+=== Random Forest ===
+  F1=0.625 (thr=0.30, P=0.56, R=0.71)   EBD=9.00%  mean bytes lost=0.167 MB  detect_rate=100%  FPB(heldout)=1.20% [0.88%, 1.63%]  (EBD thr 0.05; train 0.57%, upper 0.89%, rule wilson)
+=== Logistic Regression ===
+  F1=0.139 (thr=0.85, P=0.08, R=0.71)   EBD=58.10%  mean bytes lost=1.154 MB  detect_rate=43%  FPB(heldout)=1.11% [0.81%, 1.53%]  (EBD thr 0.95; train 1.32%, upper 1.77%, rule wilson)
+
+detector            F1-rank   EBD-rank
+-------------------------------------
+EDXGB (reproduced)       3         2
+Logistic Regression       4         4
+Random Forest            2         1
+XGBoost (default)        1         3
+-------------------------------------
+Kendall tau = +0.333  p = 0.750  -> tau below 0.5: divergent by the H1 criterion
+
+leave-one-episode-out tau sensitivity:
+  exclude 10.1.3.8->10.8.10.84:443@16243   tau=+0.000  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+0.333  diverges=True
+  exclude 10.1.3.17->10.8.10.84:443@1625   tau=+0.333  diverges=True
+
+wrote results/real_multimodel_{summary,per_episode,maxscores,sensitivity,sweep}_wilson_r7.csv, results/real_multimodel_h1_wilson_r7.txt
+Files results/round7/multimodel_sha256_run1.txt and results/round7/multimodel_sha256_run2.txt differ
+WARNING: four-family table differs between two runs
+flow rows: 181345   reconstructed episodes: 7
+held-out episodes present in both: 7
+benign: 147829 flows in 6668 sessions -> held out 80778 in 3334 sessions
+train rows 94879 (exfil 1834, other 93045)
+
+=== EDXGB (reproduced) ===
+  F1=0.480 (thr=0.45, P=0.33, R=0.86)   EBD=18.46%  mean bytes lost=0.142 MB  detect_rate=86%  FPB(heldout)=0.45% [0.27%, 0.74%]  (EBD thr 0.41; train 0.48%, upper 0.78%, rule wilson)
+=== XGBoost (default) ===
+  F1=0.800 (thr=0.20, P=0.75, R=0.86)   EBD=5.39%  mean bytes lost=0.082 MB  detect_rate=100%  FPB(heldout)=0.45% [0.27%, 0.74%]  (EBD thr 0.00; train 0.63%, upper 0.96%, rule wilson)
+=== Random Forest ===
+  F1=0.625 (thr=0.30, P=0.56, R=0.71)   EBD=20.81%  mean bytes lost=0.419 MB  detect_rate=100%  FPB(heldout)=0.48% [0.30%, 0.78%]  (EBD thr 0.10; train 0.66%, upper 1.00%, rule wilson)
+=== Logistic Regression ===
+  F1=0.139 (thr=0.85, P=0.08, R=0.71)   EBD=86.24%  mean bytes lost=1.219 MB  detect_rate=14%  FPB(heldout)=0.54% [0.34%, 0.85%]  (EBD thr 1.00; train 0.66%, upper 1.00%, rule wilson)
+
+detector            F1-rank   EBD-rank
+-------------------------------------
+EDXGB (reproduced)       3         2
+Logistic Regression       4         4
+Random Forest            2         3
+XGBoost (default)        1         1
+-------------------------------------
+Kendall tau = +0.667  p = 0.333  -> tau at or above 0.5: agree by the H1 criterion
+
+leave-one-episode-out tau sensitivity:
+  exclude 10.1.3.8->10.8.10.84:443@16243   tau=+0.667  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.667  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+0.667  diverges=False
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+0.667  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1625   tau=+0.667  diverges=False
+
+wrote results/real_multimodel_{summary,per_episode,maxscores,sensitivity,sweep}_wilson_q_oof5_all_r7.csv, results/real_multimodel_h1_wilson_q_oof5_all_r7.txt
+flow rows: 181345   reconstructed episodes: 7
+held-out episodes present in both: 7
+benign: 147829 flows in 6668 sessions -> held out 80778 in 3334 sessions
+train rows 68885 (exfil 1834, other 67051)
+
+=== EDXGB (reproduced) ===
+  F1=0.538 (thr=0.60, P=0.37, R=1.00)   EBD=11.84%  mean bytes lost=0.231 MB  detect_rate=100%  FPB(heldout)=1.05% [0.76%, 1.46%]  (EBD thr 0.38; train 0.63%, upper 0.96%, rule wilson)
+=== XGBoost (default) ===
+  F1=0.933 (thr=0.45, P=0.88, R=1.00)   EBD=5.31%  mean bytes lost=0.085 MB  detect_rate=100%  FPB(heldout)=0.87% [0.61%, 1.25%]  (EBD thr 0.00; train 0.66%, upper 1.00%, rule wilson)
+=== Random Forest ===
+  F1=0.875 (thr=0.45, P=0.78, R=1.00)   EBD=7.28%  mean bytes lost=0.151 MB  detect_rate=100%  FPB(heldout)=0.51% [0.32%, 0.82%]  (EBD thr 0.14; train 0.63%, upper 0.96%, rule wilson)
+=== Logistic Regression ===
+  F1=0.206 (thr=0.90, P=0.11, R=1.00)   EBD=79.11%  mean bytes lost=1.047 MB  detect_rate=29%  FPB(heldout)=0.51% [0.32%, 0.82%]  (EBD thr 1.00; train 0.63%, upper 0.96%, rule wilson)
+
+detector            F1-rank   EBD-rank
+-------------------------------------
+EDXGB (reproduced)       3         3
+Logistic Regression       4         4
+Random Forest            2         2
+XGBoost (default)        1         1
+-------------------------------------
+Kendall tau = +1.000  p = 0.083  -> tau at or above 0.5: agree by the H1 criterion
+
+leave-one-episode-out tau sensitivity:
+  exclude 10.1.3.8->10.8.10.84:443@16243   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+0.667  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1624   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.1.5.21:3306@1625   tau=+1.000  diverges=False
+  exclude 10.1.3.17->10.8.10.84:443@1625   tau=+1.000  diverges=False
+
+wrote results/real_multimodel_{summary,per_episode,maxscores,sensitivity,sweep}_wilson_q_oof5_benign_r7.csv, results/real_multimodel_h1_wilson_q_oof5_benign_r7.txt
+== 2. Leave-one-out with each model's own operating point (single runs) ==
+train rows 94879 (exfil 1834); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4094 FPB 0.45% unitAUC 0.998 [0.97,1.00] flowAUC 0.996 fired 6/7 at-floor 5/7 mean nEBD 21.38% median 1.03%
+no_ports    [all] thr 0.478 FPB 0.42% unitAUC 0.999 [0.98,1.00] flowAUC 0.979 fired 7/7 at-floor 6/7 mean nEBD 7.29% median 1.03%
+ports_only  [all] thr 0.55 FPB 0.00% unitAUC 1.000 [1.00,1.00] flowAUC 0.993 fired 2/7 at-floor 2/7 mean nEBD 71.86% median 100.00%
+wrote results/round7/loo_cal_all.csv
+wrote results/round7/loo_cal_all_episodes.csv
+train rows 68885 (exfil 1834); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3849 FPB 1.05% unitAUC 1.000 [1.00,1.00] flowAUC 1.000 fired 7/7 at-floor 5/7 mean nEBD 8.29% median 1.03%
+no_ports    [all] thr 0.5043 FPB 0.27% unitAUC 1.000 [0.99,1.00] flowAUC 0.999 fired 7/7 at-floor 5/7 mean nEBD 8.77% median 1.03%
+ports_only  [all] thr 0.55 FPB 0.00% unitAUC 1.000 [1.00,1.00] flowAUC 0.994 fired 0/7 at-floor 0/7 mean nEBD 100.00% median 100.00%
+wrote results/round7/loo_cal_benign.csv
+wrote results/round7/loo_cal_benign_episodes.csv
+== 3. Leave-one-out with own operating points over ten resamplings (EDXGB features) ==
+train rows 94847 (exfil 1802); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3886 FPB 0.54% unitAUC 0.999 [0.98,1.00] flowAUC 0.993 fired 6/7 at-floor 5/7 mean nEBD 21.38% median 1.03%
+wrote results/round7/var_loo_cal_all_20260815.csv
+wrote results/round7/var_loo_cal_all_20260815_episodes.csv
+train rows 108396 (exfil 1824); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4063 FPB 0.51% unitAUC 0.998 [0.98,1.00] flowAUC 0.994 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round7/var_loo_cal_all_20260816.csv
+wrote results/round7/var_loo_cal_all_20260816_episodes.csv
+train rows 111335 (exfil 1792); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3946 FPB 0.42% unitAUC 0.999 [0.98,1.00] flowAUC 0.994 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round7/var_loo_cal_all_20260817.csv
+wrote results/round7/var_loo_cal_all_20260817_episodes.csv
+train rows 90011 (exfil 1824); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3942 FPB 0.30% unitAUC 0.999 [0.99,1.00] flowAUC 0.997 fired 6/7 at-floor 5/7 mean nEBD 21.38% median 1.03%
+wrote results/round7/var_loo_cal_all_20260818.csv
+wrote results/round7/var_loo_cal_all_20260818_episodes.csv
+train rows 87792 (exfil 1851); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.4138 FPB 0.78% unitAUC 0.999 [0.98,1.00] flowAUC 0.995 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round7/var_loo_cal_all_20260819.csv
+wrote results/round7/var_loo_cal_all_20260819_episodes.csv
+train rows 117709 (exfil 1792); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3775 FPB 0.51% unitAUC 1.000 [0.99,1.00] flowAUC 0.996 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round7/var_loo_cal_all_20260820.csv
+wrote results/round7/var_loo_cal_all_20260820_episodes.csv
+train rows 93802 (exfil 1836); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3763 FPB 0.09% unitAUC 1.000 [0.99,1.00] flowAUC 0.997 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round7/var_loo_cal_all_20260821.csv
+wrote results/round7/var_loo_cal_all_20260821_episodes.csv
+train rows 93663 (exfil 1914); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3936 FPB 0.51% unitAUC 0.998 [0.98,1.00] flowAUC 0.994 fired 6/7 at-floor 5/7 mean nEBD 21.38% median 1.03%
+wrote results/round7/var_loo_cal_all_20260822.csv
+wrote results/round7/var_loo_cal_all_20260822_episodes.csv
+train rows 108635 (exfil 1830); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3938 FPB 0.51% unitAUC 0.999 [0.98,1.00] flowAUC 0.994 fired 6/7 at-floor 5/7 mean nEBD 21.36% median 1.03%
+wrote results/round7/var_loo_cal_all_20260823.csv
+wrote results/round7/var_loo_cal_all_20260823_episodes.csv
+train rows 113625 (exfil 1836); held-out benign keys 3334; training benign keys 3334
+full        [all] thr 0.3925 FPB 0.51% unitAUC 0.999 [0.98,1.00] flowAUC 0.994 fired 6/7 at-floor 6/7 mean nEBD 14.85% median 0.42%
+wrote results/round7/var_loo_cal_all_20260824.csv
+wrote results/round7/var_loo_cal_all_20260824_episodes.csv
+== 4. Summary ==
+single/all             full       n= 1 at-floor [5] own thr 0.5691-0.6 own FPB 0.33%-0.60% admissible models 7/7
+single/all             no_ports   n= 1 at-floor [6] own thr 0.4606-0.5644 own FPB 0.18%-0.63% admissible models 7/7
+single/all             ports_only n= 1 at-floor [2] own thr 0.618-0.6261 own FPB 0.00%-0.15% admissible models 7/7
+single/benign          full       n= 1 at-floor [5] own thr 0.5781-0.6197 own FPB 0.30%-0.66% admissible models 7/7
+single/benign          no_ports   n= 1 at-floor [5] own thr 0.5584-0.6069 own FPB 0.39%-0.90% admissible models 7/7
+single/benign          ports_only n= 1 at-floor [0] own thr 0.6242-0.65 own FPB 0.00%-0.03% admissible models 7/7
+ten resamplings/all    full       n=10 at-floor [5, 5, 5, 5, 5, 5, 5, 5, 5, 6] own thr 0.4094-0.6172 own FPB 0.06%-1.53% admissible models 64/70
+done: send back results/round7/ and results/real_multimodel_*_r7*

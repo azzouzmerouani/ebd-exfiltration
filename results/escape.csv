@@ -1,0 +1,6 @@
+label,duration_s,asset_bytes,incremental_ebd,incremental_fired,B_min,R_min,A_min,incremental_session_fpb,floor_Ta5,record_ebd_Ta5,floor_Ta15,record_ebd_Ta15,floor_Ta60,record_ebd_Ta60
+attack_d2_k1_a2M,2.3,2097152,1.0,True,32000,60000.0,2.0,0.0,1.0,1.0,1.0,1.0,1.0,1.0
+attack_d8_k1_a2M,8.3,2097152,0.352441,True,32000,60000.0,2.0,0.0,0.727378,1.0,1.0,1.0,1.0,1.0
+attack_d32_k1_a2M,32.3,2097152,0.078669,True,32000,60000.0,2.0,0.0,0.172653,0.172653,0.485239,1.0,1.0,1.0
+attack_d128_k1_a2M,128.3,2097152,1.0,False,32000,60000.0,2.0,0.0,0.041075,0.041075,0.119047,1.0,0.470619,1.0
+attack_d256_k1_a2M,256.3,2097152,1.0,False,32000,60000.0,2.0,0.0,0.02367,0.02367,0.062656,1.0,0.234613,1.0

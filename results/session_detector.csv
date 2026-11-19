@@ -1,0 +1,5 @@
+gap_s,rule,budget,n_session_records,n_train,n_train_pos,threshold,admissible,train_benign_units,train_alerts,train_fpb,train_upper,heldout_benign_units,heldout_alerts,heldout_fpb,heldout_lo,heldout_hi,heldout_auc,heldout_episode_sessions,episodes,floor_total_loss,ebd_total_loss,fired,fired_at_floor,mean_floor,mean_ebd
+60.0,wilson,0.01,75270,34958,462,0.4,True,34452,9,0.000261,0.000496,40303,218,0.005409,0.004739,0.006174,0.7593,9,7,6,6,1,1,0.858663,0.858663
+300.0,wilson,0.01,56459,27429,451,0.4,True,26937,12,0.000445,0.000779,29024,17,0.000586,0.000366,0.000938,0.9844,6,7,7,7,5,5,1.0,1.0
+600.0,wilson,0.01,47607,23591,19,0.4,True,23531,7,0.000297,0.000614,24010,156,0.006497,0.005557,0.007595,0.6472,6,7,7,7,2,2,1.0,1.0
+1800.0,wilson,0.01,34026,17356,17,0.4,True,17304,4,0.000231,0.000594,16665,56,0.00336,0.002589,0.004361,0.5817,5,7,7,7,2,2,1.0,1.0

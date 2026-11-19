@@ -1,0 +1,333 @@
+{
+  "version": "4.2",
+  "dataset": "daumel/dns-tunneling-dataset",
+  "started": "2026-10-09 10:19:35",
+  "finished": "2026-10-09 10:32:28",
+  "smoke": false,
+  "full": false,
+  "seed": 20260825,
+  "model": "XGBoost",
+  "directions_included": [
+    "up",
+    "unspecified"
+  ],
+  "n_down_captures_excluded": 13,
+  "n_malicious_captures": 18,
+  "n_benign_captures": 124,
+  "n_university_captures": 56,
+  "n_university_available": 56,
+  "n_packets": 20256785,
+  "n_parse_errors": 0,
+  "n_captures_ended_early": 0,
+  "n_packet_errors": 0,
+  "n_tcp_split_read": 330,
+  "n_benign_truncated": 56,
+  "in_sample_sources": [],
+  "uni_packet_cap": 300000,
+  "active_grid_s": [
+    30.0,
+    60.0,
+    120.0,
+    300.0,
+    600.0,
+    1800.0
+  ],
+  "at_floor_tol_pp": 0.01,
+  "cell_seconds": [
+    [
+      "from __future__ import annotations   # ===== ebd_dns_engine.py",
+      0.0
+    ],
+    [
+      "from __future__ import annotations   # ===== pcap_io.py",
+      0.0
+    ],
+    [
+      "ENGINE SELF-TEST (must pass)",
+      0.2
+    ],
+    [
+      "CORPUS DISCOVERY",
+      0.2
+    ],
+    [
+      "PARSE CAPTURES",
+      180.2
+    ],
+    [
+      "EPISODES (with gap sensitivity)",
+      9.6
+    ],
+    [
+      "FLOORS",
+      6.4
+    ],
+    [
+      "measured floor vs the closed form min(1, T/D)",
+      0.0
+    ],
+    [
+      "CADENCE SWEEP: floor vs telemetry T",
+      23.8
+    ],
+    [
+      "CAUSAL FEATURES",
+      48.9
+    ],
+    [
+      "LEAVE-ONE-FAMILY-OUT: TRAIN, OPERATING POINT, EBD",
+      450.8
+    ],
+    [
+      "ibHH-STYLE STREAMING ACCUMULATOR (outside the family)",
+      49.3
+    ],
+    [
+      "ATTAINMENT RESULTS",
+      1.2
+    ]
+  ],
+  "total_seconds": 770.6,
+  "cell_peak_mb": [
+    169,
+    169,
+    171,
+    171,
+    2306,
+    2377,
+    2377,
+    2377,
+    2377,
+    3140,
+    4226,
+    4226,
+    4226
+  ],
+  "peak_memory_mb": 4226,
+  "memory_limit": {
+    "gb": 32.2,
+    "source": "cgroup v2 memory.max",
+    "raw": {
+      "cgroup_v2_memory.max": "32212254720",
+      "cgroup_v1_limit_in_bytes": null,
+      "MemTotal_bytes": 33658318848,
+      "kaggle_dir": true
+    }
+  },
+  "memory_guard": {
+    "limit_gb": 32.2,
+    "limit_source": "cgroup v2 memory.max",
+    "limit_raw": {
+      "cgroup_v2_memory.max": "32212254720",
+      "cgroup_v1_limit_in_bytes": null,
+      "MemTotal_bytes": 33658318848,
+      "kaggle_dir": true
+    },
+    "budget_gb": 9.7,
+    "university_discovered": 56,
+    "university_planned": 56,
+    "university_read": 56,
+    "capture_cost_gb": 0.025,
+    "action": "none"
+  },
+  "memory_in_use_gb": [
+    [
+      "malicious parsed",
+      0.51
+    ],
+    [
+      "benign parsed",
+      2.48
+    ],
+    [
+      "floors computed",
+      2.53
+    ],
+    [
+      "benign units built",
+      3.25
+    ],
+    [
+      "before training",
+      3.32
+    ],
+    [
+      "per-query: benign features",
+      3.52
+    ],
+    [
+      "per-query: folds done",
+      3.5
+    ],
+    [
+      "flow: benign features",
+      3.67
+    ],
+    [
+      "flow: folds done",
+      3.44
+    ],
+    [
+      "session: benign features",
+      3.6
+    ],
+    [
+      "session: folds done",
+      3.44
+    ]
+  ],
+  "mem_frac_parse": 0.3,
+  "n_jobs": 4,
+  "gap_primary_s": 300.0,
+  "idle_primary_s": 15.0,
+  "session_primary_s": 300.0,
+  "flow_active_timeout_s": 1800.0,
+  "fpb_budget": 0.01,
+  "max_benign_units": 400000,
+  "max_train_units_per_episode": 5000,
+  "n_episodes": 18,
+  "n_families": 8,
+  "family_floors": {
+    "per-query": {
+      "mean": 1.700795657474634e-05,
+      "lo": 8.798999853177908e-06,
+      "hi": 2.643979981300025e-05,
+      "t_lo": 6.34529408958232e-06,
+      "t_hi": 2.767061905991036e-05,
+      "k": 0,
+      "n": 8
+    },
+    "flow": {
+      "mean": 0.40112388529357357,
+      "lo": 0.12808619422414022,
+      "hi": 0.7522770761801486,
+      "t_lo": 0.0,
+      "t_hi": 0.8184130871117739,
+      "k": 3,
+      "n": 8
+    },
+    "session": {
+      "mean": 1.0,
+      "lo": 1.0,
+      "hi": 1.0,
+      "t_lo": 1.0,
+      "t_hi": 1.0,
+      "k": 8,
+      "n": 8
+    }
+  },
+  "family_attainment": {
+    "per-query": {
+      "ebd": [
+        0.0008189559323101547,
+        1.1306581422779283e-05,
+        0.0032203728891649136
+      ],
+      "gap": [
+        0.08019479757354081,
+        0.0,
+        0.32038030871123574
+      ],
+      "ebd_t": [
+        0.0008189559323101547,
+        0.0,
+        0.0027120764300700892
+      ],
+      "gap_t": [
+        0.08019479757354081,
+        0.0,
+        0.2696218758397054
+      ],
+      "within_tol": 7,
+      "n": 8
+    },
+    "flow": {
+      "ebd": [
+        0.40121778163245886,
+        0.1280980824932984,
+        0.7525645109748675
+      ],
+      "gap": [
+        0.009389633888530079,
+        0.0,
+        0.037558535554120316
+      ],
+      "ebd_t": [
+        0.40121778163245886,
+        0.0,
+        0.8184385841442103
+      ],
+      "gap_t": [
+        0.009389633888530079,
+        0.0,
+        0.03159258989492577
+      ],
+      "within_tol": 7,
+      "n": 8
+    },
+    "session": {
+      "ebd": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gap": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ebd_t": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "gap_t": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "within_tol": 8,
+      "n": 8
+    }
+  },
+  "ibhh": {
+    "threshold_chars": 110.0,
+    "window_s": 60.0,
+    "n_benign_streams": 774242,
+    "train_burden": 0.009765680497828845,
+    "train_upper": 0.009987169078747337,
+    "calibrated_on": "max over sources; binding source: university_traffic",
+    "threshold_pooled_rule": 82.0,
+    "threshold_by_source": {
+      "top_1_million_domains": 5.0,
+      "university_traffic": 110.0
+    },
+    "n_benign_streams_pooled": 1249948,
+    "fpb_top_1_million_domains": 1.728567384958439e-05,
+    "fpb_top_1_million_domains_lo": 8.759106111668526e-06,
+    "fpb_top_1_million_domains_hi": 3.411216128320479e-05,
+    "over_budget_top_1_million_domains": false,
+    "fpb_top_1_million_domains_pooled_rule": 4.5374893855159014e-05,
+    "fpb_top_1_million_domains_pooled_rule_lo": 2.967961770825687e-05,
+    "fpb_top_1_million_domains_pooled_rule_hi": 6.93696234051046e-05,
+    "alerts_per_hour_top_1_million_domains": 1.0419243473240956,
+    "fpb_university_traffic": 0.009567935914129163,
+    "fpb_university_traffic_lo": 0.009351046709417584,
+    "fpb_university_traffic_hi": 0.009789805957885997,
+    "over_budget_university_traffic": false,
+    "fpb_university_traffic_pooled_rule": 0.01520188767787861,
+    "fpb_university_traffic_pooled_rule_lo": 0.014928617912998906,
+    "fpb_university_traffic_pooled_rule_hi": 0.015480081063263063,
+    "alerts_per_hour_university_traffic": 1919.03054825296,
+    "fpb_pooled": 0.005942773534892266,
+    "alerts_per_hour_pooled": 632.8496631650082
+  },
+  "invariant_notes": [
+    "I4 cobaltstrike|datasets/daumel/dns-tunneling-dataset/dns-exfiltration-dataset/01_original_pcap_files/malicious/cobaltstrike/cobaltstrike_aaaa_up.pcapng|198.41.0.136->dnsch.cobaltstrike-aaaa.com|1559715934.064/flow: measured floor -1.72 pp below the closed form (transfer ran behind the constant-rate diagonal)",
+    "I4 cobaltstrike|datasets/daumel/dns-tunneling-dataset/dns-exfiltration-dataset/01_original_pcap_files/malicious/cobaltstrike/cobaltstrike_txt_up.pcapng|198.41.0.135->dnsch.cobaltstrike-txt.com|1559653543.775/flow: measured floor -1.54 pp below the closed form (transfer ran behind the constant-rate diagonal)",
+    "I4 dnsexfiltrator|datasets/daumel/dns-tunneling-dataset/dns-exfiltration-dataset/01_original_pcap_files/malicious/dnsexfiltrator/dnsexfiltrator_txt_up.pcap|192.168.0.164->api.daumel.xyz|1733827261.303/flow: measured floor -0.04 pp below the closed form (transfer ran behind the constant-rate diagonal)",
+    "I4 dnspot|datasets/daumel/dns-tunneling-dataset/dns-exfiltration-dataset/01_original_pcap_files/malicious/dnspot/dnspot.pcap|192.168.117.128->www.ggy666.tk|1694246341.781/flow: measured floor -0.20 pp below the closed form (transfer ran behind the constant-rate diagonal)",
+    "I4 ozymandns|datasets/daumel/dns-tunneling-dataset/dns-exfiltration-dataset/01_original_pcap_files/malicious/ozymandns/ozymandns_txt_up.pcapng|198.41.0.134->sshdns.ozymandns-txt.com|1558261538.072/flow: measured floor -0.12 pp below the closed form (transfer ran behind the constant-rate diagonal)",
+    "I4 tcp_over_dns|datasets/daumel/dns-tunneling-dataset/dns-exfiltration-dataset/01_original_pcap_files/malicious/tcp_over_dns/tcp-over-dns-TXT.pcap|113.54.129.232->www.ggy666.tk|1693796414.507/flow: measured floor -0.29 pp below the closed form (transfer ran behind the constant-rate diagonal)"
+  ]
+}
